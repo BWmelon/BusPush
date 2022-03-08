@@ -1,0 +1,18 @@
+<view class="city">
+  <van-search
+    value="{{ keyword }}"
+    bind:change="onChangeKeyword"
+    placeholder="请输入搜索城市"
+  />
+  <view class="city-list">
+    <view
+      class="city-list-item"
+      wx:for="{{ filterCityList }}"
+      wx:key="index"
+      data-id="{{ item.cityId }}"
+      bindtap="onSelectCity"
+    >{{ item.cityName }}
+    </view>
+  </view>
+</view>
+
