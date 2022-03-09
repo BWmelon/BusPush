@@ -23,10 +23,14 @@ Page({
    * 获取城市列表
    */
   getCityList() {
+    wx.showLoading({
+      title: '请求中',
+    })
     callContainer({
       url: '/cityList',
       method: 'GET'
     }).then(res => {
+      wx.hideLoading()
       this.setData({
         cityList: res.data.data,
         filterCityList: res.data.data

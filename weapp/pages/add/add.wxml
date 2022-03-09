@@ -4,5 +4,19 @@
   </view>
   {{ cityName }}
   {{ cityId }}
+
+  <van-search
+    value="{{ keyword }}"
+    bind:change="onChangeKeyword"
+    placeholder="请输入搜索路线"
+  />
+
+  <view class="lines">
+    <view class="lines-item" wx:for="{{ linesList }}" wx:key="index" data-id="{{ item.lineId }}">
+      <view class="lines-item-name">路线名: {{ item.lineNo }}</view>
+      <view class="lines-item-name">起始站: {{ item.startSn }}</view>
+      <view class="lines-item-name">终点站: {{ item.endSn }}</view>
+    </view>
+  </view>
 </view>
 

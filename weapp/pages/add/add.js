@@ -1,6 +1,6 @@
 // pages/add/add.js
 const app = getApp()
-
+import callContainer from '../../utils/callContainer'
 Page({
 
   /**
@@ -8,7 +8,8 @@ Page({
    */
   data: {
     cityName: '',
-    cityId: ''
+    cityId: '',
+    linesList: [], // 路线列表
   },
 
   /**
@@ -43,6 +44,20 @@ Page({
   openCity() {
     wx.navigateTo({
       url: '/pages/city/city',
+    })
+  },
+
+  /**
+   * 搜索
+   */
+  onChangeKeyword(e) {
+    callContainer({
+      url: `/search?cityId=${this.data.cityId}&key=${e.detail}`,
+      method: 'GET',
+    }).then(res => {
+      this.setData({
+        linesList: res.data.data
+      })
     })
   },
 
