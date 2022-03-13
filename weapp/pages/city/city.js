@@ -42,7 +42,7 @@ Page({
    * 选择城市
    */
   onSelectCity(e) {
-    let id = e.target.dataset.id
+    let id = e.currentTarget.dataset.id
     let result = this.data.cityList.find(e => e.cityId === id)
     
     app.globalData.city.name = result.cityName

@@ -5,8 +5,6 @@ import { userCollection } from '../../utils/db'
 Page({
   data: {
     openid: '',
-    key: '',
-    uname: ''
   },
   onLoad() {
     this.getUserInfo()
@@ -23,8 +21,6 @@ Page({
       if(res.length) {
         this.setData({
           openid: res[0]._openid,
-          key: res[0].key,
-          uname: res[0].uname
         })
 
         this.setUserInfo()

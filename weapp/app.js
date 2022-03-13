@@ -1,7 +1,6 @@
 //app.js
 App({
   globalData: {
-    key: '',
     uname: '',
     openid: '',
     city: {

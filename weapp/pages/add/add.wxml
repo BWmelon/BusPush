@@ -11,12 +11,40 @@
     placeholder="请输入搜索路线"
   />
 
-  <view class="lines">
-    <view class="lines-item" wx:for="{{ linesList }}" wx:key="index" data-id="{{ item.lineId }}">
+  <view class="lines" wx:if="{{ !lineId }}">
+    <view
+      class="lines-item"
+      wx:for="{{ linesList }}"
+      wx:key="index"
+      data-id="{{ item.lineId }}"
+      bindtap="onSelectLine"
+    >
       <view class="lines-item-name">路线名: {{ item.lineNo }}</view>
       <view class="lines-item-name">起始站: {{ item.startSn }}</view>
       <view class="lines-item-name">终点站: {{ item.endSn }}</view>
     </view>
   </view>
+
+  <view>lineId: {{ lineId }}</view>
+  <view>startSn: {{ startSn }}</view>
+  <view>endSn: {{ endSn }}</view>
+
+  <view class="site" wx:if="{{ !sId }}">
+    <view
+      class="site-item"
+      wx:for="{{ stationList }}"
+      wx:key="index"
+      data-id="{{ item.sId }}"
+      bindtap="onSelectStation"
+    >
+      <view class="site-item-name">{{ item.sn }}</view>
+    </view>
+  </view>
+
+  <view>sId: {{ sId }}</view>
+  <view>sn: {{ sn }}</view>
+
+  <view bindtap="handleAdd">确认添加</view>
+
 </view>
 

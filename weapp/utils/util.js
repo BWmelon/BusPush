@@ -1,4 +1,6 @@
-import { hexMD5 } from './md5'
+import {
+  hexMD5
+} from './md5'
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -15,7 +17,21 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+const createUUID = (len, radix = 10) => {
+  var chars = '0123456789'.split('');
+  var uuid = [],
+    i;
+  radix = radix || chars.length;
+  if (len) {
+    for (i = 0; i < len; i++) {
+      uuid[i] = chars[0 | Math.random() * radix];
+    }
+  }
+  return uuid.join('');
+}
+
 module.exports = {
   formatTime,
-  md5: hexMD5
+  md5: hexMD5,
+  createUUID
 }
