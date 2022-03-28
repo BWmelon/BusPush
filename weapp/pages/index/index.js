@@ -57,5 +57,13 @@ Page({
     wx.navigateTo({
       url: '/pages/add/add',
     })
+  },
+
+  uuidTest() {
+    userCollection.where({
+      uuid: '621039'
+    }).get().then(res => {
+      console.log(res);
+    })
   }
 })

@@ -1,3 +1,5 @@
 <view>
   <view class="button" bindtap="openAdd">添加路线</view>
+
+  <view bindtap="uuidTest">uuid查询测试</view>
 </view>
