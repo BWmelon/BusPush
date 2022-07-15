@@ -1,0 +1,79 @@
+{
+  "app": {
+    "bundleName": "com.bwmelon.buspush",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+    "default": {
+      "network": {
+        "cleartextTraffic": true,
+        "securityConfig": {
+          "domainSettings": {
+            "cleartextPermitted": true,
+            "domains": [
+              {
+                "subdomains": true,
+                "name": "cn.bing.com"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "module": {
+    "package": "com.bwmelon.buspush",
+    "name": ".MyApplication",
+    "mainAbility": "com.bwmelon.buspush.MainAbility",
+    "deviceType": [
+      "wearable"
+    ],
+    "reqPermissions": [{
+      "name": "ohos.permission.INTERNET"
+    }],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": "com.bwmelon.buspush.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index",
+          "pages/bind/bind"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 454,
+          "autoDesignWidth": true
+        }
+      }
+    ]
+  }
+}
