@@ -1,14 +1,36 @@
 //app.js
+
+import MPServerless from '@alicloud/mpserverless-sdk';
+
+const { appId, spaceId, clientSecret, endpoint } = require('./config/keys')
+
+const mpserverless = new MPServerless(wx, {
+  appId,
+  spaceId,
+  clientSecret,
+  endpoint
+});
+
 App({
+  mpserverless,
   globalData: {
     uname: '',
-    openid: '',
+    openid: '', // 小程序openid
+    userId: '', // 阿里serverless用户id
     city: {
       name: '',
       id: ''
     }
   },
   onLaunch: function () {
+    mpserverless.init().then(res => {
+      if(res.success) {
+        mpserverless.user.getInfo().then(res => {
+          this.globalData.openid = res.result.user.oAuthUserId
+          this.globalData.userId = res.result.user.userId
+        })
+      }
+    }); 
     console.log(__wxConfig.envVersion)
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -39,19 +61,6 @@ App({
                   })
               })
           }
-      })
-    }
-    
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        // env 参数说明：
-        //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-        //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-        //   如不填则使用默认环境（第一个创建的环境）
-        env: (__wxConfig.envVersion === 'develop' || __wxConfig.envVersion === 'trial') ? 'dev-4gvm90b141930a09' : 'rel-7gr34ovx8ca2d1ba',
-        traceUser: true,
       })
     }
   }

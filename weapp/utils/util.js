@@ -17,21 +17,21 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
-const createUUID = (len, radix = 10) => {
+const createCode = (len, radix = 10) => {
   var chars = '0123456789'.split('');
-  var uuid = [],
+  var code = [],
     i;
   radix = radix || chars.length;
   if (len) {
     for (i = 0; i < len; i++) {
-      uuid[i] = chars[0 | Math.random() * radix];
+      code[i] = chars[0 | Math.random() * radix];
     }
   }
-  return uuid.join('');
+  return code.join('');
 }
 
 module.exports = {
   formatTime,
   md5: hexMD5,
-  createUUID
+  createCode
 }

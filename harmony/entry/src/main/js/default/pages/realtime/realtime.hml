@@ -1,0 +1,15 @@
+<div class="container">
+    <list class="buses">
+        <list-item class="buses-item" for="{{ buses }}">
+            <div>
+                <text>预计{{ ($item.travels[0].travelTime / 60).toFixed(0) }}分钟</text>
+            </div>
+            <div>
+                <text>距离{{ ($item.distanceToWaitStn / 1000).toFixed(2) }}公里</text>
+            </div>
+            <div>
+                <text>距离{{ $item.travels[0].order - $item.order }}站</text>
+            </div>
+        </list-item>
+    </list>
+</div>

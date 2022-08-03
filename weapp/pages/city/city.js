@@ -1,6 +1,6 @@
 // pages/city/city.js
-import callContainer from '../../utils/callContainer'
 let app = getApp();
+const { mpserverless } = getApp();
 Page({
 
   /**
@@ -26,15 +26,20 @@ Page({
     wx.showLoading({
       title: '请求中',
     })
-    callContainer({
-      url: '/cityList',
-      method: 'GET'
-    }).then(res => {
+    mpserverless.function.invoke('getCityList')
+    .then(res => {
       wx.hideLoading()
-      this.setData({
-        cityList: res.data.data,
-        filterCityList: res.data.data
-      })
+      console.log('ress', res);
+      if(res.success && res.result.errCode === 0) {
+        this.setData({
+          cityList: res.result.data.data.cityList,
+          filterCityList: res.result.data.data.cityList
+        })
+      } else {
+        wx.showToast({
+          title: '获取城市列表失败',
+        })
+      }
     })
   },
 

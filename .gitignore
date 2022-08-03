@@ -17,3 +17,4 @@
 */node_modules
 weapp/cloudfunctions/*/node_modules
 weapp/miniprogram_npm
+weapp/config/keys.js

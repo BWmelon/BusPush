@@ -1,12 +1,12 @@
 // pages/add/add.js
 const app = getApp()
-import callContainer from '../../utils/callContainer'
 import {
-  userCollection
-} from '../../utils/db'
-import {
-  createUUID
+  createCode
 } from '../../utils/util'
+
+const { mpserverless } = getApp();
+
+import { codeCollection } from '../../utils/db'
 
 Page({
 
@@ -63,16 +63,19 @@ Page({
    * 搜索
    */
   onChangeKeyword(e) {
-    callContainer({
-      url: `/search?cityId=${this.data.cityId}&key=${e.detail}`,
-      method: 'GET',
-    }).then(res => {
-      this.setData({
-        linesList: res.data.data
-      })
+    mpserverless.function.invoke('searchLine', { cityId: this.data.cityId, key: e.detail })
+    .then(res => {
+      if(res.success && res.result.errCode === 0) {
+        this.setData({
+          linesList: res.result.data
+        })
+      } else {
+        wx.showToast({
+          title: '路线搜索失败',
+        })
+      }
     })
   },
-
   /**
    * 选择路线
    */
@@ -84,13 +87,17 @@ Page({
       endSn: this.data.linesList.find(item => item.lineId === lineId).endSn,
     })
 
-    callContainer({
-      url: `/lineRoute?cityId=${this.data.cityId}&lineId=${encodeURI(lineId)}`,
-      method: 'GET',
-    }).then(res => {
-      this.setData({
-        stationList: res.data.data
-      })
+    mpserverless.function.invoke('getLineRoute', { cityId: this.data.cityId, lineId })
+    .then(res => {
+      if(res.success && res.result.errCode === 0) {
+        this.setData({
+          stationList: res.result.data
+        })
+      } else {
+        wx.showToast({
+          title: '站点获取失败',
+        })
+      }
     })
   },
 
@@ -113,18 +120,19 @@ Page({
   },
 
   /**
-   * 生成uuid
+   * 生成code
    */
-  getUUid() {
+  getCode() {
     return new Promise((resolve, reject) => {
-      const uuid = createUUID(6)
-      userCollection.where({
-        uuid
-      }).get().then(res => {
-        if (res.data.length) {
-          this.getUUid()
+      const code = createCode(6)
+      codeCollection.find({
+        code
+      }).then(res => {
+        console.log(res);
+        if (res.result.length) {
+          this.getCode()
         } else {
-          resolve(uuid)
+          resolve(code)
         }
       })
     })
@@ -134,25 +142,27 @@ Page({
    * 添加一条记录
    */
   async addRecord() {
-    let uuid = await this.getUUid()
-    userCollection.add({
-      data: {
-        cityName: this.data.cityName, // 城市名
-        cityId: this.data.cityId, // 城市Id
-        lineId: this.data.lineId, // 线路Id
-        startSn: this.data.startSn, // 起始站
-        endSn: this.data.endSn, // 终点站
-        sId: this.data.sId, // 站点id
-        sn: this.data.sn, // 站点名
-        date: new Date().getTime(), // 创建时间
-        uuid
-      }
-    }).then(() => {
+    let code = await this.getCode()
+    mpserverless.db.collection('code').insertOne({
+      userId: getApp().globalData.userId,
+      openid: getApp().globalData.openid,
+      cityName: this.data.cityName, // 城市名
+      cityId: this.data.cityId, // 城市Id
+      lineId: this.data.lineId, // 线路Id
+      startSn: this.data.startSn, // 起始站
+      endSn: this.data.endSn, // 终点站
+      sId: this.data.sId, // 站点id
+      sn: this.data.sn, // 站点名
+      date: new Date().getTime(), // 创建时间
+      code
+    })
+    .then(() => {
       wx.showToast({
-        title: `添加成功，推送码为：${uuid}`,
+        title: `添加成功，推送码为：${code}`,
         icon: 'none',
       });
     })
+    .catch(console.error);
   },
 
   /**

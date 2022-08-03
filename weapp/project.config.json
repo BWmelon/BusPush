@@ -20,7 +20,7 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -29,8 +29,13 @@
     "useIsolateContext": true,
     "userConfirmedUseIsolateContext": false,
     "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
+    "packNpmManually": true,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./"
+      }
+    ],
     "minifyWXSS": true,
     "disableUseStrict": false,
     "minifyWXML": true,
@@ -65,11 +70,10 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "2.23.2",
+  "libVersion": "2.25.0",
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "appid": "wxf5ad479748af255d",
-  "projectname": "weapp"
+  "appid": "wxf5ad479748af255d"
 }
