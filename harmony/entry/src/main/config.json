@@ -17,6 +17,10 @@
               {
                 "subdomains": true,
                 "name": "cn.bing.com"
+              },
+              {
+                "subdomains": true,
+                "name": "buspushapi.bwmelon.com"
               }
             ]
           }
@@ -65,7 +69,8 @@
           "pages/index/index",
           "pages/bind/bind",
           "pages/realtime/realtime",
-          "pages/realtime/realtime"
+          "pages/realtime/realtime",
+          "pages/code/code"
         ],
         "name": "default",
         "window": {

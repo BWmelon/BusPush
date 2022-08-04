@@ -1,19 +1,14 @@
 <div class="container">
-<!--    <text class="title" style="color: #260000;">-->
-<!--        Hello {{ title }}-->
-<!--    </text>-->
-    <text class="title">
-        <span>{{ title }}</span>
-    </text>
-<!--    <div>-->
-
-<!--        <div class="input">-->
-<!--            <input class="input" placeholder="请输入"></input>-->
-<!--        </div>-->
-<!--        <div class="buttons">-->
-<!--            <button class="buttons-item" @click="back">取消</button>-->
-<!--            <button class="buttons-item" @click="confirm">确认</button>-->
-<!--        </div>-->
-<!--    </div>-->
-    <button class="buttons-item" @click="confirm">确认</button>
+        <div>
+            <text>
+                <span style="font-size: 10px;">{{ code }}</span>
+            </text>
+        </div>
+        <div class="input">
+            <input type="number" class="input" placeholder="请输入" onchange="onInputCode" ></input>
+        </div>
+        <div class="buttons">
+            <button class="buttons-item" @click="back">取消</button>
+            <button class="buttons-item" @click="confirm">确认</button>
+        </div>
 </div>
