@@ -4,6 +4,6 @@
 <!--    </text>-->
     <text class="title" @click="openAdd">
 <!--        {{ title }}1-->
-        添加1
+        添加
     </text>
 </div>
