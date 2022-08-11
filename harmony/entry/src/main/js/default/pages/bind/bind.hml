@@ -1,9 +1,7 @@
 <div class="container">
-        <div>
-            <text>
-                <span style="font-size: 10px;">{{ title }}</span>
-            </text>
-        </div>
+        <text style="font-size: 12px;">
+            <span>{{ title }}</span>
+        </text>
         <div class="input">
             <input type="number" value="{{ code }}" class="input" placeholder="请输入" onchange="onInputCode" ></input>
         </div>

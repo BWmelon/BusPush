@@ -1,10 +1,10 @@
-[2022-07-26T15:11:03.354] [INFO] [28460] - entered into codelinter 1.0.0 with node v14.19.1
+[2022-08-11T17:30:15.500] [INFO] [29628] - entered into codelinter 1.0.0 with node v14.19.1
 
-[2022-07-26T15:11:03.362] [INFO] [28460] - checkers to be applied: all
+[2022-08-11T17:30:15.507] [INFO] [29628] - checkers to be applied: all
 
-[2022-07-26T15:11:03.363] [INFO] [28460] - 1 filepaths to be checked
+[2022-08-11T17:30:15.509] [INFO] [29628] - 1 filepaths to be checked
 
-[2022-07-26T15:11:03.367] [ERROR] [28460] - D:\HarmonyOS Legacy SDK\js\2.2.0.3\component\component_config.json is not a valid file
+[2022-08-11T17:30:15.513] [ERROR] [29628] - D:\HarmonyOS Legacy SDK\js\2.2.0.3\component\component_config.json is not a valid file
 
-[2022-07-26T15:11:03.368] [INFO] [28460] - assign 7 workers to lint parallelly
+[2022-08-11T17:30:15.515] [INFO] [29628] - assign 7 workers to lint parallelly
 

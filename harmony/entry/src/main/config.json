@@ -66,11 +66,11 @@
     "js": [
       {
         "pages": [
+          "pages/code/code",
           "pages/index/index",
           "pages/bind/bind",
           "pages/realtime/realtime",
-          "pages/realtime/realtime",
-          "pages/code/code"
+          "pages/generate/generate"
         ],
         "name": "default",
         "window": {
