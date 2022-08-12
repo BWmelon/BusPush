@@ -2,6 +2,7 @@ import http from '@ohos.net.http';
 import prompt from '@system.prompt';
 export default {
     data: {
+        refresh: false,
         title: "",
         code: '',
         codeInfo: {},
@@ -126,19 +127,21 @@ export default {
     },
     onInit() {
         this.title = this.code
-        this.getRealtime(this.code)
+        this.getRealtime()
     },
     /**
      * 下拉刷新
      */
-    pullDownRefresh() {},
+    pullDownRefresh() {
+        this.refresh = true
+        this.getRealtime()
+    },
     /**
      * 获取实时信息
      * @param code 查询码
      */
-    getRealtime(code) {
+    getRealtime() {
         let httpRequest = http.createHttp();
-
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
         httpRequest.request(
             `https://buspushapi.bwmelon.com/watch/getRealtime?code=${this.code}`,
@@ -149,6 +152,7 @@ export default {
                 },
             }
         ).then(res => {
+            this.refresh = false
             if(res.responseCode == 200) {
                 let result = JSON.parse(res.result)
                 if(result.errCode == 0) {
@@ -167,6 +171,10 @@ export default {
             }
 
         }).catch(err => {
+            if(this.refresh) {
+                prompt.showToast({message: '刷新失败'})
+            }
+            this.refresh = false
             this.title = JSON.stringify(err)
             prompt.showToast({message: '网络连接失败，请联系管理员'})
         })

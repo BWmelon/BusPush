@@ -16,9 +16,7 @@ export default {
      * @param e 输入回调
      */
     onInputCode(e) {
-        console.log(e.value)
         this.code = e.value
-
     },
     /**
      * 确认添加
@@ -54,7 +52,7 @@ export default {
                         codeInfoList.push(result.data)
                         storage.putSync('codeInfoList', JSON.stringify(codeInfoList))
                         storage.flushSync()
-                        router.push({
+                        router.replace({
                             uri: 'pages/code/code'
                         })
                     }).catch(() => {

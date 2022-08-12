@@ -15,17 +15,3 @@
     width: 100%;
     margin: 10px;
 }
-
-.container-qrcode-el {
-    width: 160px;
-    height: 160px;
-    border-radius: 80px;
-}
-
-.container-tip {
-    font-size: 12px;
-}
-
-.container-add {
-    font-size: 12px;
-}

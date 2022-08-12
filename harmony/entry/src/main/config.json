@@ -70,7 +70,8 @@
           "pages/index/index",
           "pages/bind/bind",
           "pages/realtime/realtime",
-          "pages/generate/generate"
+          "pages/generate/generate",
+          "pages/setting/setting"
         ],
         "name": "default",
         "window": {

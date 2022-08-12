@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="container-item">
+        <div class="container-item-content">
+            <div class="content-label">
+                <text>
+                    <span>自动查询</span>
+                </text>
+            </div>
+            <div class="content-el">
+                <switch checked="{{ autoQuery }}"></switch>
+            </div>
+        </div>
+    </div>
+    <div class="container-item">
+        <div class="container-item-content">
+            <div class="content-label" @click="showSelectInterval">
+                <text>
+                    <span>刷新间隔</span>
+                </text>
+            </div>
+            <div class="content-el">
+                <picker id="interval" type="text" range="{{ intervalList }}" value="'15'" show="true">
+
+                </picker>
+            </div>
+        </div>
+    </div>
+</div>

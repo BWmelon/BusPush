@@ -1,6 +1,6 @@
 <div class="container">
     <list class="code">
-        <list-item class="code-item" for="{{ codeInfoList }}" style="height: 60px;" @click="openRealtime($item.code)">
+        <list-item class="code-item" for="{{ codeInfoList }}" style="height: 60px;" @click="openRealtime($item.code)" @longpress="showDeleteDialog($item.code)">
             <div class="code-item-wrap">
                 <text>{{ $item.lineNo }}</text>
                 <text>
@@ -11,14 +11,14 @@
             </div>
         </list-item>
     </list>
-    <div @click="openPage('bind')">
-        <text>
-            <span>添加</span>
-        </text>
-    </div>
     <div @click="openPage('generate')">
         <text>
             <span>生成</span>
+        </text>
+    </div>
+    <div @click="openPage('setting')">
+        <text>
+            <span>设置</span>
         </text>
     </div>
 </div>
