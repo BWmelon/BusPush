@@ -11,14 +11,8 @@
             </div>
         </list-item>
     </list>
-    <div @click="openPage('generate')">
-        <text>
-            <span>生成</span>
-        </text>
-    </div>
-    <div @click="openPage('setting')">
-        <text>
-            <span>设置</span>
-        </text>
+    <div class="container-buttons" >
+        <button class="container-buttons-item" @click="openPage('generate')"></button>
+        <button class="container-buttons-item" @click="openPage('setting')"></button>
     </div>
 </div>

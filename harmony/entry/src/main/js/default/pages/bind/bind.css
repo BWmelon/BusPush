@@ -1,24 +1,31 @@
 .container {
-    display: flex;
     flex-direction: column;
-/*    justify-content: center;*/
     align-items: center;
-    padding-top: 100px;
-    left: 0px;
-    top: 0px;
-    width: 454px;
-/*    height: 454px;*/
+    width: 100%;
+    height: 100%;
 }
 
-.input {
-
+.container-input {
+    width: 70%;
+    margin-top: 70px;
 }
 
-.buttons {
+.container-input-el {
+    text-align: center;
+}
+
+.container-buttons {
     display: flex;
+    margin-top: 20px;
+
 }
 
+.container-buttons-item {
+    icon-height: 20px;
+    icon-width: 20px;
+}
 
-.title {
-    font-size: 10px;
+.confirm {
+    margin-left: 60px;
+    background-color: #317aff;
 }

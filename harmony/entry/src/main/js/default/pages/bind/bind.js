@@ -6,7 +6,6 @@ import featureAbility from '@ohos.ability.featureAbility'
 export default {
     data: {
         code: '643792',
-        title: '',
     },
     onInit() {
 

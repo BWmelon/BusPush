@@ -1,12 +1,9 @@
 <div class="container">
-        <text style="font-size: 12px;">
-            <span>{{ title }}</span>
-        </text>
-        <div class="input">
-            <input type="number" value="{{ code }}" class="input" placeholder="请输入" onchange="onInputCode" ></input>
+        <div class="container-input">
+            <input class="container-input-el" type="number" value="{{ code }}" class="input" placeholder="请输入" onchange="onInputCode" ></input>
         </div>
-        <div class="buttons">
-            <button class="buttons-item" @click="back">取消</button>
-            <button class="buttons-item" @click="confirm">确认</button>
+        <div class="container-buttons">
+            <button class="container-buttons-item" type="circle" @click="back" icon="/common/images/close.png">取消</button>
+            <button class="container-buttons-item confirm" type="circle" @click="confirm" icon="/common/images/confirm.png">确认</button>
         </div>
 </div>
