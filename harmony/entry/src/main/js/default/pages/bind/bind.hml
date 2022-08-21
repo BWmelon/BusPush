@@ -1,6 +1,6 @@
 <div class="container">
         <div class="container-input">
-            <input class="container-input-el" type="number" value="{{ code }}" class="input" placeholder="请输入" onchange="onInputCode" ></input>
+            <input class="container-input-el" type="number" value="{{ code }}" class="input" placeholder="请输入查询码" maxlength="{{ 6 }}" onchange="onInputCode" ></input>
         </div>
         <div class="container-buttons">
             <button class="container-buttons-item" type="circle" @click="back" icon="/common/images/close.png">取消</button>

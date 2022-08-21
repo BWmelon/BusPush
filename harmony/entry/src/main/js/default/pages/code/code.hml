@@ -1,18 +1,28 @@
 <div class="container">
-    <list class="code">
-        <list-item class="code-item" for="{{ codeInfoList }}" style="height: 60px;" @click="openRealtime($item.code)" @longpress="showDeleteDialog($item.code)">
-            <div class="code-item-wrap">
-                <text>{{ $item.lineNo }}</text>
-                <text>
-                    {{ $item.startSn }} -> {{ $item.endSn }}
-                </text>
-                <text>查询码</text>
-                <text>{{ $item.code }}</text>
+    <div class="container-code">
+        <div class="container-code-empty"></div>
+        <div class="container-code-item "  for="{{ codeInfoList }}" style="height: 60px;" @click="openRealtime($item.code)" @longpress="showDeleteDialog($item.code)">
+            <div class="item-bus">
+                <image class="item-bus-img" src="/common/images/bus.png"></image>
             </div>
-        </list-item>
-    </list>
-    <div class="container-buttons" >
-        <button class="container-buttons-item" @click="openPage('generate')"></button>
-        <button class="container-buttons-item" @click="openPage('setting')"></button>
+            <div class="item-info">
+                <div class="item-info-line">
+                    <text class="line-name">{{ $item.lineNo }}</text>
+                    <image class="line-img" src="/common/images/location.png"></image>
+                    <text class="line-name">{{ $item.sn }}</text>
+                </div>
+                <div class="item-info-sn">
+                    <text>
+                        {{ $item.startSn }} → {{ $item.endSn }}
+                    </text>
+                </div>
+                <div class="item-info-code"><text>{{ $item.code }}</text></div>
+            </div>
+        </div>
+        <div class="container-buttons">
+            <button class="container-buttons-item add" type="circle" icon="/common/images/add.png" @click="openPage('generate')"></button>
+            <button class="container-buttons-item setting" type="circle" icon="/common/images/setting.png" @click="openPage('setting')"></button>
+        </div>
     </div>
+
 </div>

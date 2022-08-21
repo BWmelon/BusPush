@@ -1,29 +1,88 @@
 .container {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    left: 0px;
-    top: 0px;
     width: 100%;
     height: 100%;
 }
 
-.code {
-
+.container-code-empty {
+    margin-top: 40px;
 }
 
-.code-item {
-    
+.container-code {
+    flex-direction: column;
+    overflow: scroll;
+    padding: 0 20px;
+    color: #fff;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.code-item-wrap {
-    font-size: 16px;
+.container-code-item {
+    background-color: #606376;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    height: 80px;
+    flex: 0 0 80px;
+    width: 400px;
+    padding-left: 10px;
+    align-items: center;
 }
 
-.title {
-    font-size: 38px;
-    text-align: center;
-    width: 100%;
-    margin: 10px;
+.item-bus {
+    width: 50px;
+    flex: 0 0 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 10px;
 }
+
+.item-bus-img {
+}
+
+.item-info {
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.item-info-line {
+    font-size: 12px;
+}
+
+.line-img {
+    flex: 0 0 18px;
+    width: 14px;
+    height: 14px;
+    margin: 0 2px 0 4px;
+}
+
+.item-info-sn {
+    font-size: 12px;
+}
+
+.item-info-code {
+    font-size: 12px;
+}
+
+.container-buttons {
+    margin-bottom: 30px;
+}
+
+.container-buttons-item {
+    align-items: center;
+    icon-height: 20px;
+    icon-width: 20px;
+}
+
+.add {
+    background-color: #cb4343;
+}
+
+.setting {
+    background-color: #6354cf;
+    margin-left: 40px;
+}
+
+

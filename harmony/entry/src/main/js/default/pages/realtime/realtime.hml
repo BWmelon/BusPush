@@ -1,8 +1,5 @@
 <div class="container">
     <refresh refreshing="{{fresh}}" onrefresh="pullDownRefresh">
-        <text>
-            <span>{{ title }}</span>
-        </text>
         <list class="buses">
             <list-item class="buses-item" for="{{ buses }}">
                 <div>
