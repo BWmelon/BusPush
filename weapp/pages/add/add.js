@@ -17,7 +17,7 @@ Page({
     cityName: '',
     cityId: '',
     linesList: [], // 路线列表
-    lineNo: '',
+    name: '',
     lineId: '',
     startSn: '', // 起始站
     endSn: '', // 终点站
@@ -86,7 +86,7 @@ Page({
       lineId,
       startSn: this.data.linesList.find(item => item.lineId === lineId).startSn,
       endSn: this.data.linesList.find(item => item.lineId === lineId).endSn,
-      lineNo: this.data.linesList.find(item => item.lineId === lineId).lineNo,
+      name: this.data.linesList.find(item => item.lineId === lineId).name,
     })
 
     mpserverless.function.invoke('getLineRoute', { cityId: this.data.cityId, lineId })
@@ -150,7 +150,7 @@ Page({
       openid: getApp().globalData.openid,
       cityName: this.data.cityName, // 城市名
       cityId: this.data.cityId, // 城市Id
-      lineNo: this.data.lineNo, // 路线名
+      name: this.data.name, // 路线名
       lineId: this.data.lineId, // 线路Id
       startSn: this.data.startSn, // 起始站
       endSn: this.data.endSn, // 终点站

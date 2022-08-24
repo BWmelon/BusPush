@@ -7,7 +7,7 @@
             </div>
             <div class="item-info">
                 <div class="item-info-line">
-                    <text class="line-name">{{ $item.lineNo }}</text>
+                    <text class="line-name">{{ $item.name }}</text>
                     <image class="line-img" src="/common/images/location.png"></image>
                     <text class="line-name">{{ $item.sn }}</text>
                 </div>

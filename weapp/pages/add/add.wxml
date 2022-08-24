@@ -19,7 +19,7 @@
       data-id="{{ item.lineId }}"
       bindtap="onSelectLine"
     >
-      <view class="lines-item-name">路线名: {{ item.lineNo }}</view>
+      <view class="lines-item-name">路线名: {{ item.name }}</view>
       <view class="lines-item-name">起始站: {{ item.startSn }}</view>
       <view class="lines-item-name">终点站: {{ item.endSn }}</view>
     </view>
