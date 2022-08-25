@@ -1,0 +1,24 @@
+/* pages/mine/mine.wxss */
+.mine-list-item {
+  padding: 0 20rpx;
+  display: flex;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #eee;
+}
+.mine-list-item .item-left {
+  display: flex;
+  align-items: center;
+}
+.mine-list-item .item-left-icon {
+  color: #1989fa;
+  margin-right: 20rpx;
+}
+.mine-list-item .item-left-label {
+  color: #666;
+}
+.mine-list-item .item-right {
+  color: #999;
+}

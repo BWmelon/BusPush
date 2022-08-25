@@ -1,0 +1,68 @@
+<view class="code">
+  <view class="code-list">
+    <van-empty description="未生成查询码" wx:if="{{ !codeList.length }}" />
+    <view
+      class="code-list-item"
+      wx:for="{{ codeList }}"
+      wx:key="index"
+    >
+      <van-swipe-cell
+        right-width="{{ 65 }}"
+        async-close
+        bind:close="onClose"
+        data-code="{{ item.code }}"
+      >
+        <van-cell-group>
+          <view class="item-info">
+            <view class="item-info-code">{{ item.code }}</view>
+            <view class="item-info-list">
+              <i class="list-icon iconfont icon-chengshi"></i>
+              <div class="list-value">{{ item.cityName }}</div>
+            </view>
+            <view class="item-info-list">
+              <i class="list-icon iconfont icon-jt_gongjiao"></i>
+              <div class="list-value">{{ item.name }}</div>
+            </view>
+            <view class="item-info-list">
+              <i class="list-icon iconfont icon-luxian1"></i>
+              <div class="list-value">{{ item.startSn }}</div>
+              <i class="list-arrow iconfont icon-jiantou_xiangyou"></i>
+              <div class="list-value">{{ item.endSn }}</div>
+            </view>
+            <view class="item-info-list">
+              <i class="list-icon iconfont icon-dingwei"></i>
+              <div class="list-value">{{ item.sn }}</div>
+            </view>
+            <view class="item-info-list">
+              <i class="list-icon iconfont icon-shijian"></i>
+              <div class="list-value">{{ item.startTime }}</div>
+              <i class="list-arrow iconfont icon-jiantou_xiangyou"></i>
+              <div class="list-value">{{ item.endTime }}</div>
+            </view>
+          </view>
+
+        </van-cell-group>
+        <view
+          class="item-delete"
+          slot="right"
+          round
+        >删除
+        </view>
+      </van-swipe-cell>
+    </view>
+  </view>
+  <van-button
+    class="code-add"
+    icon="plus"
+    type="info"
+    round
+    custom-style="width: 100%"
+    bindtap="handleAdd"
+  >添加
+  </van-button>
+  <view class="code-tip">
+    <i class="code-tip-icon iconfont icon-tishi"></i>
+    温馨提示：查询码暂不支持编辑，如需修改查询内容，请左滑删除不需要的查询码并重新生成。
+  </view>
+</view>
+

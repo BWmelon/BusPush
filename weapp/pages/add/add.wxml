@@ -1,17 +1,82 @@
-<view>
-  <view bindtap="openCity">
-    选择城市
+<view class="add">
+  <!-- 城市选择 -->
+  <view
+    class="add-city"
+    wx:if="{{ cityName == '' }}"
+    bindtap="openCity"
+  >
+    <div class="add-city-container">
+      <i class="container-icon iconfont icon-chengshi"></i>
+      <view class="container-name">选择城市</view>
+    </div>
   </view>
-  {{ cityName }}
-  {{ cityId }}
-
+  <!-- 已选信息 -->
+  <view class="add-info" wx:else>
+    <view class="add-info-item" bindtap="openCity">
+      <i class="item-icon iconfont icon-chengshi"></i>
+      <view class="item-name">{{ cityName }}</view>
+    </view>
+    <view
+      class="add-info-item"
+      wx:if="{{ name }}"
+      bindtap="changeLine"
+    >
+      <i class="item-icon iconfont icon-jt_gongjiao"></i>
+      <view class="item-name">{{ name }}</view>
+    </view>
+    <view
+      class="add-info-item"
+      wx:if="{{ startSn }}"
+      bindtap="changeLine"
+    >
+      <i class="item-icon iconfont icon-luxian1"></i>
+      <view class="item-name">{{ startSn }}</view>
+      <i class="item-arrow iconfont icon-jiantou_xiangyou"></i>
+      <view class="item-name">{{ endSn }}</view>
+    </view>
+    <view
+      class="add-info-item"
+      wx:if="{{ sn }}"
+      bindtap="changeSn"
+    >
+      <i class="item-icon iconfont icon-dingwei"></i>
+      <view class="item-name">{{ sn }}</view>
+    </view>
+    <view class="add-info-item" wx:if="{{ sn }}">
+      <i class="item-icon iconfont icon-shijian"></i>
+      <view
+        class="item-name"
+        bindtap="changeTime"
+        data-type="start"
+      >{{ startTime }}
+      </view>
+      <i class="item-arrow iconfont icon-jiantou_xiangyou"></i>
+      <view
+        class="item-name"
+        bindtap="changeTime"
+        data-type="end"
+      >{{ endTime }}
+      </view>
+      <i class="item-attention iconfont icon-zhuyi"></i>
+    </view>
+    <!-- 确认 -->
+    <view
+      class="add-info-confirm"
+      wx:if="{{ !!cityName && !!lineId && !!sId }}"
+      bindtap="handleAdd"
+    >
+      <i class="confirm-icon iconfont icon-queren"></i>
+    </view>
+  </view>
+  <!-- 路线搜索 -->
   <van-search
+    wx:if="{{ !!cityName && !lineId }}"
     value="{{ keyword }}"
     bind:change="onChangeKeyword"
     placeholder="请输入搜索路线"
   />
-
-  <view class="lines" wx:if="{{ !lineId }}">
+  <!-- 路线列表 -->
+  <view class="lines" wx:if="{{ !!cityName && !lineId }}">
     <view
       class="lines-item"
       wx:for="{{ linesList }}"
@@ -19,32 +84,49 @@
       data-id="{{ item.lineId }}"
       bindtap="onSelectLine"
     >
-      <view class="lines-item-name">路线名: {{ item.name }}</view>
-      <view class="lines-item-name">起始站: {{ item.startSn }}</view>
-      <view class="lines-item-name">终点站: {{ item.endSn }}</view>
+      <view class="lines-item-bus">
+        <i class="bus-icon iconfont icon-jt_gongjiao"></i>
+        <view class="bus-name">{{ item.name }}</view>
+      </view>
+      <view class="lines-item-sn">
+        <i class="sn-icon iconfont icon-luxian1"></i>
+        <view class="sn-name">{{ item.startSn }}</view>
+        <i class="sn-arrow iconfont icon-jiantou_xiangyou"></i>
+        <view class="sn-name">{{ item.endSn }}</view>
+      </view>
     </view>
   </view>
-
-  <view>lineId: {{ lineId }}</view>
-  <view>startSn: {{ startSn }}</view>
-  <view>endSn: {{ endSn }}</view>
-
-  <view class="site" wx:if="{{ !sId }}">
-    <view
-      class="site-item"
-      wx:for="{{ stationList }}"
-      wx:key="index"
-      data-id="{{ item.sId }}"
-      bindtap="onSelectStation"
-    >
-      <view class="site-item-name">{{ item.sn }}</view>
+  <!-- 等待站点 -->
+  <view class="site" wx:if="{{ !!cityName && !!lineId && !sId }}">
+    <view class="site-tip">
+      <i class="site-tip-icon iconfont icon-tishi"></i>
+      请选择等待站点
+    </view>
+    <view class="site-list">
+      <view
+        class="site-list-item"
+        wx:for="{{ stationList }}"
+        wx:key="index"
+        data-id="{{ item.sId }}"
+        bindtap="onSelectStation"
+      >{{ item.sn }}
+      </view>
     </view>
   </view>
-
-  <view>sId: {{ sId }}</view>
-  <view>sn: {{ sn }}</view>
-
-  <view bindtap="handleAdd">确认添加</view>
-
+  <!-- 时间选择弹窗 -->
+  <van-popup
+    show="{{ showDialog }}"
+    bind:close="closeDialog"
+    position="bottom"
+    round
+  >
+    <van-datetime-picker
+      type="time"
+      value="{{ currentTime }}"
+      bind:input="onInputTime"
+      bind:confirm="confirmTime"
+      bind:cancel="closeDialog"
+    />
+  </van-popup>
 </view>
 

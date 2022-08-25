@@ -1,0 +1,61 @@
+/* pages/code/code.wxss */
+
+.code {
+    padding: 20rpx;
+    &-list {
+        color: #fff;
+        &-item {
+            background-color: #1989fa;
+            border-radius: 20rpx;
+            overflow: hidden;
+            .item-info {
+                padding: 20rpx;
+                position: relative;
+                &-code {
+                    font-size: 80rpx;
+                    position: absolute;
+                    right: 20rpx;
+                }
+                &-list {
+                    display: flex;
+                    align-items: center;
+                    .list-icon {
+                        margin-right: 20rpx;
+                    }
+                    .list-value {}
+                    .list-arrow {
+                        margin: 0 10rpx;
+                    }
+                    &:nth-child(n+2) {
+                        margin-top: 10rpx;
+                    }
+                }
+            }
+            .item-delete {
+                background-color: #ee0a24;
+                height: 100%;
+                width: 130rpx;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            &:nth-child(n+2) {
+                margin-top: 20rpx;
+            }
+        }
+    }
+    &-tip {
+        margin-top: 20rpx;
+        font-size: 28rpx;
+        color: #999;
+        line-height: 48rpx;
+        &-icon {
+            margin-right: 8rpx;
+        }
+    }
+    &-add {
+        margin: 40rpx auto 0;
+        display: block;
+        width: 400rpx;
+    }
+}

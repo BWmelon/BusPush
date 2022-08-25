@@ -1,0 +1,18 @@
+<view class="mine">
+  <view class="mine-list">
+    <view
+      class="mine-list-item"
+      wx:for="{{ list }}"
+      wx:key="index"
+      bindtap="openPage"
+      data-page="{{ item.page }}"
+    >
+      <view class="item-left">
+        <i class="item-left-icon iconfont icon-chaxun"></i>
+        <view class="item-left-label">{{ item.label }}</view>
+      </view>
+      <i class="item-right iconfont icon-jiantouyou"></i>
+    </view>
+  </view>
+</view>
+
