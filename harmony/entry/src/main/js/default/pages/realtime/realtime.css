@@ -3,17 +3,58 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    left: 0px;
-    top: 0px;
+    width: 100%;
+    overflow: scroll;
+    position: relative;
+}
+
+.countdown {
     width: 100%;
     height: 100%;
+    position: fixed;
 }
 
 .buses {
-    height: 100%;
+    flex-direction: column;
+    margin-top: 40px;
+    padding: 0 30px;
 }
 
 .buses-item {
-    height: 100%;
-    border: 1px solid #fff;
+    background-color: #6354cf;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex: 0 0 80px;
+    padding: 10px 14px;
+    border-radius: 20px;
+}
+
+.buses-item-time {
+    flex: 0 0 80px;
+    align-items: center;
+}
+
+.time-value {
+    font-size: 36px;
+}
+
+.time-unit {
+    font-size: 12px;
+    margin-left: 2px;
+    margin-top: 10px;
+}
+
+.buses-item-info {
+    font-size: 15px;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.info-num-unit {
+    margin-left: 3px;
+}
+
+.info-km-unit {
+    margin-left: 3px;
 }

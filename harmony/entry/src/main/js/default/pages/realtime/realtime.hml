@@ -1,18 +1,25 @@
 <div class="container">
+    <progress class="countdown" type="scale-ring"  percent= "10" secondarypercent="50"></progress>
     <refresh refreshing="{{fresh}}" onrefresh="pullDownRefresh">
-        <list class="buses">
-            <list-item class="buses-item" for="{{ buses }}">
-                <div>
-                    <text>预计{{ ($item.travels[0].travelTime / 60).toFixed(0) }}分钟</text>
+        <div class="buses">
+            <div class="buses-item" for="{{ buses }}" @click="demo">
+                <div class="buses-item-time">
+                    <div class="time-value"><text>{{ ($item.travels[0].travelTime / 60).toFixed(0) }}</text></div>
+                    <div class="time-unit"><text>分钟</text></div>
                 </div>
-                <div>
-                    <text>距离{{ ($item.distanceToWaitStn / 1000).toFixed(2) }}公里</text>
+                <div class="buses-item-info">
+                    <div class="info-num">
+                        <div class="info-num-value" if="{{ $item.travels[0].order - $item.order !== 0 }}"><text>{{ $item.travels[0].order - $item.order }}</text></div>
+                        <div class="info-num-unit" if="{{ $item.travels[0].order - $item.order !== 0 }}"><text>站</text></div>
+                        <div class="info-num-unit" if="{{ $item.travels[0].order - $item.order == 0 }}"><text>即将到站</text></div>
+                    </div>
+                    <div class="info-km">
+                        <div class="info-km-value"><text>{{ ($item.distanceToWaitStn / 1000).toFixed(2) }}</text></div>
+                        <div class="info-km-unit"><text>km</text></div>
+                    </div>
                 </div>
-                <div>
-                    <text>距离{{ $item.travels[0].order - $item.order }}站</text>
-                </div>
-            </list-item>
-        </list>
+            </div>
+        </div>
     </refresh>
 
 </div>

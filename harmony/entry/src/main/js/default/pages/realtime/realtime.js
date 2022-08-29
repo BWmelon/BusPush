@@ -115,7 +115,65 @@ export default {
                                     "distance": 0,
                                     "optArrivalTime": 1658819424389,
                                     "optimisticTime": 821,
-                                    "order": 18,
+                                    "order": 12,
+                                    "pRate": -1.0,
+                                    "recommTip": "15:10",
+                                    "travelTime": 821
+                                }],
+                    "updateFrom": 32,
+                    "userName": "",
+                    "userPhoto": ""
+                }, {
+                    "acBus": 0,
+                    "activityLink": "",
+                    "airStatus": 0,
+                    "assistDesc": "别着急，小车陪你一起等",
+                    "awayTag": 0,
+                    "beforeBaseIndex": 121,
+                    "beforeLat": 31.96737745339094,
+                    "beforeLng": 118.75736922218506,
+                    "busBaseIndex": 121,
+                    "busDesc": "",
+                    "busDescList": [],
+                    "busDescOnLine": "",
+                    "busId": "343898",
+                    "capacity": 0,
+                    "cityId": "018",
+                    "datasource": 0,
+                    "delay": 0,
+                    "delayDesc": "",
+                    "display": 0,
+                    "distanceToSc": 853,
+                    "distanceToWaitStn": 4287,
+                    "from": 33,
+                    "jrDataSrc": 173,
+                    "lat": 31.967449039821613,
+                    "licence": "343898",
+                    "link": "",
+                    "lng": 118.75737772750357,
+                    "mTicket": 0,
+                    "mileage": 5811.0,
+                    "mileageOff": 0,
+                    "mileageOn": 0,
+                    "nearestToUser": false,
+                    "newLink": "",
+                    "order": 12,
+                    "passStnTimeMS": -1,
+                    "rType": 0,
+                    "shareId": "",
+                    "showDistance": 1,
+                    "speed": 9.8,
+                    "state": 0,
+                    "syncTime": 2,
+                    "tagDesc": "",
+                    "travels": [{
+                                    "arrivalTime": 1658819424389,
+                                    "debusCost": 0,
+                                    "debusTime": 0,
+                                    "distance": 0,
+                                    "optArrivalTime": 1658819424389,
+                                    "optimisticTime": 821,
+                                    "order": 12,
                                     "pRate": -1.0,
                                     "recommTip": "15:10",
                                     "travelTime": 821
@@ -126,8 +184,11 @@ export default {
                 }]
     },
     onInit() {
-        this.title = this.code
+        return
         this.getRealtime()
+    },
+    demo (){
+        console.log('1111')
     },
     /**
      * 下拉刷新
@@ -135,6 +196,9 @@ export default {
     pullDownRefresh() {
         this.refresh = true
         this.getRealtime()
+    },
+    getIsArrived(item) {
+        return item.travels[0].order - item.order === 0
     },
     /**
      * 获取实时信息
