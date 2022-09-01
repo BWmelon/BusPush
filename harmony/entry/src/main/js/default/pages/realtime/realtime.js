@@ -7,6 +7,9 @@ export default {
         code: '',
         codeInfo: {},
         realtimeInfo: {},
+        countdownOrigin: 6,
+        countdown: 6,
+        running: null,
         buses: [{
                     "acBus": 0,
                     "activityLink": "",
@@ -184,11 +187,19 @@ export default {
                 }]
     },
     onInit() {
-        return
         this.getRealtime()
+        this.running = setInterval(() => {
+            console.log(this.countdown)
+            if(this.countdown <= 0) {
+                this.getRealtime()
+                this.countdown = this.countdownOrigin
+
+            }
+            this.countdown -= 0.1
+        }, 100)
     },
-    demo (){
-        console.log('1111')
+    onDestroy() {
+        clearInterval(this.running)
     },
     /**
      * 下拉刷新
@@ -233,7 +244,7 @@ export default {
                 this.title = JSON.stringify(res)
                 prompt.showToast({message: '网络连接失败，请联系管理员'})
             }
-
+            this.countdown = this.countdownOrigin
         }).catch(err => {
             if(this.refresh) {
                 prompt.showToast({message: '刷新失败'})
@@ -241,6 +252,7 @@ export default {
             this.refresh = false
             this.title = JSON.stringify(err)
             prompt.showToast({message: '网络连接失败，请联系管理员'})
+            this.countdown = this.countdownOrigin
         })
     }
 }

@@ -1,25 +1,52 @@
 <div class="container">
-    <progress class="countdown" type="scale-ring"  percent= "10" secondarypercent="50"></progress>
-    <refresh refreshing="{{fresh}}" onrefresh="pullDownRefresh">
-        <div class="buses">
-            <div class="buses-item" for="{{ buses }}" @click="demo">
-                <div class="buses-item-time">
-                    <div class="time-value"><text>{{ ($item.travels[0].travelTime / 60).toFixed(0) }}</text></div>
-                    <div class="time-unit"><text>分钟</text></div>
-                </div>
-                <div class="buses-item-info">
-                    <div class="info-num">
-                        <div class="info-num-value" if="{{ $item.travels[0].order - $item.order !== 0 }}"><text>{{ $item.travels[0].order - $item.order }}</text></div>
-                        <div class="info-num-unit" if="{{ $item.travels[0].order - $item.order !== 0 }}"><text>站</text></div>
-                        <div class="info-num-unit" if="{{ $item.travels[0].order - $item.order == 0 }}"><text>即将到站</text></div>
+    <div class="container-progress">
+        <progress
+                class="container-progress-el"
+                color=""
+                type="ring"
+                percent="{{ countdown / countdownOrigin * 100 }}"
+                secondarypercent="100"
+                scale-number="{{ 30 }}"
+                ></progress>
+    </div>
+
+    <div class="content">
+        <refresh class="refresh" refreshing="{{ fresh }}" onrefresh="pullDownRefresh" type="pulldown">
+            <button class="container-buttons-item add" type="circle" icon="/common/images/add.png" @click="openPage('generate')"></button>
+            <list class="buses">
+                <list-item class="buses-item" for="{{ buses }}">
+                    <div class="buses-item-time">
+                        <div class="time-value">
+                            <text>{{ ($item.travels[0].travelTime / 60).toFixed(0) }}</text>
+                        </div>
+                        <div class="time-unit">
+                            <text>分钟</text>
+                        </div>
                     </div>
-                    <div class="info-km">
-                        <div class="info-km-value"><text>{{ ($item.distanceToWaitStn / 1000).toFixed(2) }}</text></div>
-                        <div class="info-km-unit"><text>km</text></div>
+                    <div class="buses-item-info">
+                        <div class="info-num">
+                            <div class="info-num-value" if="{{ $item.travels[0].order - $item.order !== 0 }}">
+                                <text>{{ $item.travels[0].order - $item.order }}</text>
+                            </div>
+                            <div class="info-num-unit" if="{{ $item.travels[0].order - $item.order !== 0 }}">
+                                <text>站</text>
+                            </div>
+                            <div class="info-num-unit" if="{{ $item.travels[0].order - $item.order == 0 }}">
+                                <text>即将到站</text>
+                            </div>
+                        </div>
+                        <div class="info-km">
+                            <div class="info-km-value">
+                                <text>{{ ($item.distanceToWaitStn / 1000).toFixed(2) }}</text>
+                            </div>
+                            <div class="info-km-unit">
+                                <text>km</text>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </refresh>
+                </list-item>
+            </list>
+        </refresh>
+    </div>
 
 </div>
