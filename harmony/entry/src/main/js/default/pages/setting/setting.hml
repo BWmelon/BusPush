@@ -1,27 +1,27 @@
 <div class="container">
     <div class="container-item">
-        <div class="container-item-content">
+        <div class="container-item-content"  @click="openPage('refreshTime')">
             <div class="content-label">
-                <text>
-                    <span>自动查询</span>
-                </text>
+                <text>刷新间隔</text>
             </div>
-            <div class="content-el">
-                <switch checked="{{ autoQuery }}"></switch>
+            <div class="content-value padding"><text>{{ refreshTime }}秒</text></div>
+        </div>
+    </div>
+    <div class="container-item">
+        <div class="container-item-content"  @click="openPage('warn')">
+            <div class="content-label">
+                <text>到站提醒</text>
             </div>
+            <div class="content-value padding"><text>{{ warn ? '已开启' : '未开启' }}</text></div>
         </div>
     </div>
     <div class="container-item">
         <div class="container-item-content">
-            <div class="content-label" @click="showSelectInterval">
-                <text>
-                    <span>刷新间隔</span>
-                </text>
+            <div class="content-label">
+                <text>自动查询</text>
             </div>
-            <div class="content-el">
-                <picker id="interval" type="text" range="{{ intervalList }}" value="'15'" show="true">
-
-                </picker>
+            <div class="content-value">
+                <switch checked="{{ autoQuery }}" @change="handleChangeAutoQuery"></switch>
             </div>
         </div>
     </div>

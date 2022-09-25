@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="list">
+        <div class="list-item">
+            <div class="list-item-label"><text>开启状态</text></div>
+            <div class="list-item-value"><switch class="value-switch" checked="{{ warn }}" @change="handleChangeWarn"></switch></div>
+        </div>
+        <div class="list-item" if="{{ warn }}">
+            <div class="list-item-label"><text>提前时间</text></div>
+            <div class="list-item-value">
+                <picker-view class="value-picker" type="text" range="{{ range }}" selected="{{ warnTime }}" indicatorsuffix="m" @change="handleChangeWarnTime"></picker-view>
+            </div>
+        </div>
+    </div>
+    <div class="tip"><text>提示：开启后，最近一辆公交信息会变红并且每次刷新后智能穿戴设备将会震动。</text></div>
+</div>

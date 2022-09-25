@@ -1,3 +1,4 @@
+<van-dialog id="van-dialog" />
 <view class="add">
   <!-- 城市选择 -->
   <view
@@ -57,7 +58,7 @@
         data-type="end"
       >{{ endTime }}
       </view>
-      <i class="item-attention iconfont icon-zhuyi"></i>
+      <i class="item-attention iconfont icon-zhuyi" bindtap="showTip"></i>
     </view>
     <!-- 确认 -->
     <view

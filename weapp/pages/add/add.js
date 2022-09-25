@@ -7,6 +7,7 @@ import {
 const { mpserverless } = getApp();
 
 import { codeCollection } from '../../utils/db'
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 Page({
 
@@ -24,6 +25,7 @@ Page({
         stationList: [], // 站点列表
         sId: '', // 站点id
         sn: '', // 站点名
+        targetOrder: '', // 目标order
         running: false,
         showDialog: false,
         currentTimeType: 'start',
@@ -59,13 +61,27 @@ Page({
                 endSn: '',
                 stationList: [],
                 sId: '',
-                sn: ''
+                sn: '',
+                targetOrder: ''
             })
         }
         this.setData({
             cityId: app.globalData.city.id,
             cityName: app.globalData.city.name,
         })
+    },
+
+    /**
+     * 时间提示
+     */
+    showTip() {
+      Dialog.alert({
+        title: '提示',
+        message: '该功能需要配合智能穿戴端设置-自动查询使用，开启后，打开智能穿戴端会自动进入查询对应时间段内公交，减少操作。例如预计需要早上8点和下午5点查看公交，可将早上的时间范围选择为7:00-9:00，下午的时间选择为4:00-6:00，在不同时间段打开智能穿戴设备端会自动查询早上和下午公交。如无需使用，请保持默认时间为00:00-23:59，无需修改。',
+        theme: 'round-button',
+      }).then(() => {
+        // on close
+      });
     },
 
     /**
@@ -148,9 +164,12 @@ Page({
      * 选择站点
      */
     onSelectStation(e) {
+      
         let sId = e.currentTarget.dataset.id
+        console.log(this.data.stationList.find(item => item.sId === sId).order);
         this.setData({
             sId,
+            targetOrder: this.data.stationList.find(item => item.sId === sId).order,
             sn: this.data.stationList.find(item => item.sId === sId).sn
         })
     },
@@ -209,6 +228,7 @@ Page({
                 endSn: this.data.endSn, // 终点站
                 sId: this.data.sId, // 站点id
                 sn: this.data.sn, // 站点名
+                targetOrder: this.data.targetOrder,
                 startTime: this.data.startTime,
                 endTime: this.data.endTime,
                 date: new Date().getTime(), // 创建时间
@@ -246,7 +266,8 @@ Page({
             endSn: '',
             stationList: [],
             sId: '',
-            sn: ''
+            sn: '',
+            targetOrder: ''
         })
     },
 
@@ -256,7 +277,8 @@ Page({
     changeSn() {
         this.setData({
             sId: '',
-            sn: ''
+            sn: '',
+            targetOrder: ''
         })
     },
 

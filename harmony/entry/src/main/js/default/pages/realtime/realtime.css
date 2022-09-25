@@ -23,21 +23,31 @@
 .content {
     height: 100%;
     flex-direction: column;
-/*    overflow: scroll;*/
+    overflow: scroll;
     padding: 0 30px;
 }
 
-.refresh {
-    width: 100%;
+.marquee {
+    font-size: 14px;
+    padding: 20px 40px 0;
+    margin-bottom: 10px;
 }
 
 .buses {
-/*    flex-direction: column;*/
-/*    margin-top: 46px;*/
+    flex-direction: column;
 }
 
 .buses-item {
     background-color: #6354cf;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex: 0 0 80px;
+    padding: 10px 14px;
+    border-radius: 20px;
+}
+
+.buses-item-warn {
+    background-color: #dc001a;
     justify-content: space-between;
     margin-bottom: 16px;
     flex: 0 0 80px;
@@ -73,4 +83,70 @@
 
 .info-km-unit {
     margin-left: 3px;
+}
+
+.map {
+    flex-direction: column;
+}
+
+.map-item {
+    font-size: 16px;
+    height: 40px;
+    align-items: center;
+}
+
+.map-item-bus {
+    width: 20px;
+    height: 20px;
+}
+
+.map-item-bus-margin {
+    width: 20px;
+    height: 20px;
+    margin-top: -44px;
+}
+
+.bus-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.map-item-line {
+    height: 100%;
+    width: 22px;
+    position: relative;
+}
+
+.line-streak {
+    width: 2px;
+    position: absolute;
+    left: 10px;
+    height: 100%;
+    top: 0;
+    background-color: #fff;
+}
+
+.line-point {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    border: 1px solid #6354cf;
+    background-color: #6354cf;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    margin-top: -3px;
+    z-index: 1;
+}
+
+.line-arrow {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    left: 7px;
+    top: -4px;
+}
+
+.map-item-name-current {
+    color: #6354cf;
 }

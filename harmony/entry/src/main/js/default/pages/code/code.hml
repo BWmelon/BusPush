@@ -6,17 +6,25 @@
                 <image class="item-bus-img" src="/common/images/bus.png"></image>
             </div>
             <div class="item-info">
-                <div class="item-info-line">
-                    <text class="line-name">{{ $item.name }}</text>
-                    <image class="line-img" src="/common/images/location.png"></image>
-                    <text class="line-name">{{ $item.sn }}</text>
+                <div class="item-info-row">
+                    <image class="row-img" src="/common/images/sign.png"></image>
+                    <marquee class="row-value" if="{{ $item.nameLoop }}">{{ $item.name }}</marquee>
+                    <text class="row-value" if="{{ !$item.nameLoop }}">{{ $item.name }}</text>
                 </div>
-                <div class="item-info-sn">
-                    <text>
-                        {{ $item.startSn }} → {{ $item.endSn }}
-                    </text>
+                <div class="item-info-row">
+                    <image class="row-img" src="/common/images/location.png"></image>
+                    <marquee class="row-value" if="{{ $item.snLoop }}">{{ $item.sn }}</marquee>
+                    <text class="row-value" if="{{ !$item.snLoop }}">{{ $item.sn }}</text>
                 </div>
-                <div class="item-info-code"><text>{{ $item.code }}</text></div>
+                <div class="item-info-row">
+                    <image class="row-img" src="/common/images/line.png"></image>
+                    <marquee class="row-value" if="{{ !$item.lineLoop }}">{{ $item.startSn }} → {{ $item.endSn }}</marquee>
+                    <text class="row-value" if="{{ $item.lineLoop }}">{{ $item.startSn }} → {{ $item.endSn }}</text>
+                </div>
+                <div class="item-info-row">
+                    <image class="row-img" src="/common/images/num.png"></image>
+                    <text class="row-value">{{ $item.code }}</text>
+                </div>
             </div>
         </div>
         <div class="container-buttons">

@@ -67,11 +67,13 @@
       {
         "pages": [
           "pages/code/code",
-          "pages/index/index",
           "pages/bind/bind",
           "pages/realtime/realtime",
           "pages/generate/generate",
-          "pages/setting/setting"
+          "pages/setting/setting",
+          "pages/refreshTime/refreshTime",
+          "pages/index/index",
+          "pages/warn/warn"
         ],
         "name": "default",
         "window": {
@@ -83,6 +85,9 @@
     "reqPermissions": [
       {
         "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.VIBRATE"
       }
     ]
   }

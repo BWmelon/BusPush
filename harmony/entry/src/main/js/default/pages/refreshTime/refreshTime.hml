@@ -1,0 +1,4 @@
+<div class="container">
+    <text class="container-text">{{ refreshTime }}s</text>
+    <slider class="container-slider" min="{{ min }}" max="{{ max }}" value="{{ refreshTime }}" @change="onChangeTime" step="{{ 2 }}"></slider>
+</div>

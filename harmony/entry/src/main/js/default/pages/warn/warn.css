@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.list {
+    flex-direction: column;
+    padding: 0 30px;
+}
+
+.list-item {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.list-item-label {
+    font-size: 16px;
+    flex: 0 0 100px;
+}
+
+.list-item-value {
+    
+}
+
+.value-switch {
+    height: 36px;
+    margin-right: 12px;
+}
+
+.value-picker {
+    font-size: 16px;
+    width: 100px;
+    height: 110px;
+    selected-font-size: 16px;
+}
+
+.tip {
+    font-size: 8px;
+    text-align: center;
+    color: #ccc;
+    margin: 6px 40px 0;
+    line-height: 12px;
+}

@@ -5,7 +5,7 @@ import prompt from '@system.prompt';
 import featureAbility from '@ohos.ability.featureAbility'
 export default {
     data: {
-        code: '643792',
+        code: '038854',
     },
     onInit() {
 

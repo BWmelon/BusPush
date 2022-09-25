@@ -23,8 +23,8 @@
     background-color: #606376;
     border-radius: 20px;
     margin-bottom: 14px;
-    height: 80px;
-    flex: 0 0 80px;
+    height: 100px;
+    flex: 0 0 100px;
     width: 400px;
     padding-left: 10px;
     align-items: center;
@@ -47,23 +47,20 @@
     margin-left: 10px;
 }
 
-.item-info-line {
+.item-info-row {
     font-size: 12px;
+    align-items: center;
 }
 
-.line-img {
-    flex: 0 0 18px;
-    width: 14px;
-    height: 14px;
-    margin: 0 2px 0 4px;
+.row-img {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
 }
 
-.item-info-sn {
-    font-size: 12px;
-}
-
-.item-info-code {
-    font-size: 12px;
+.row-value {
+    width: 90px;
+    margin-left: 6px;
 }
 
 .container-buttons {

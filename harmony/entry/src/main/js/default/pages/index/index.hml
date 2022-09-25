@@ -1,9 +1,5 @@
 <div class="container">
-<!--    <text class="title">-->
-<!--        {{ $t('strings.hello') }} {{ title }}-->
-<!--    </text>-->
-    <text class="title" @click="openAdd">
-<!--        {{ title }}1-->
-        添加
+    <text class="title">
+        {{ title }}
     </text>
 </div>
