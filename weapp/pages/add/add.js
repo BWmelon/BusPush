@@ -37,7 +37,24 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: (options) => {},
+    onLoad: (options) => {
+      codeCollection.find({ openid: app.globalData.openid }).then(res => {
+        if(res.result.length >= 10) {
+          wx.showModal({
+            title: '提示',
+            content: '最多只能添加10条查询码，请删除不需要的查询码后再添加',
+            showCancel: false,
+            success: (res) => {
+              if(res.confirm) {
+                wx.navigateBack({
+                  delta: 0,
+                })
+              }
+            } 
+          })
+        }
+      })
+    },
 
 
     /**

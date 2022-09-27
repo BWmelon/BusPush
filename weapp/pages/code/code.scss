@@ -9,7 +9,7 @@
             border-radius: 20rpx;
             overflow: hidden;
             .item-info {
-                padding: 20rpx;
+                padding: 20rpx 0 20rpx 20rpx;
                 position: relative;
                 &-code {
                     font-size: 80rpx;
@@ -34,7 +34,8 @@
             .item-delete {
                 background-color: #ee0a24;
                 height: 100%;
-                width: 130rpx;
+                width: 65px;
+                flex: 0 0 65px;
                 display: flex;
                 align-items: center;
                 justify-content: center;

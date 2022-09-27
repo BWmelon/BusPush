@@ -4,7 +4,7 @@ import featureAbility from '@ohos.ability.featureAbility'
 import prompt from '@system.prompt';
 export default {
     data: {
-        codeInfoList: []
+        codeInfoList: [],
     },
     onInit() {
         let context = featureAbility.getContext();
@@ -12,15 +12,20 @@ export default {
             let storage = data_storage.getStorageSync(path)
             //设置初始化
             let setting = storage.getSync('setting', '')
+
             if(!setting) {
-                storage.putSync('setting', JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3' }))
+                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3' })
+                storage.putSync('setting', str)
                 storage.flushSync()
+                setting = str
             }
             setting = JSON.parse(setting)
 
             let data = storage.getSync('codeInfoList', '[]')
             this.codeInfoList = JSON.parse(data)
             this.judgeLoop()
+
+
 
             if(!this.codeInfoList.length) {
                 // 没有查询码，自动跳转到扫码页面
@@ -30,14 +35,16 @@ export default {
                 if(setting.autoQuery) {
                     this.codeInfoList.map(item => {
                         item.startSec = Number(item.startTime.split(':')[0]) * 3600 + Number(item.startTime.split(':')[1]) * 60
-                        item.endSec = Number(item.endTime.split(':')[0]) * 3600 + Number(item.end.split(':')[1]) * 60
+                        item.endSec = Number(item.endTime.split(':')[0]) * 3600 + Number(item.endTime.split(':')[1]) * 60
                     })
 
                     let now = new Date()
 
                     let nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
 
-                    let index = this.codeInfoList.findIndex(e => nowSec >= e.startSec && nowSec <= e.endSec)
+                    let index = this.codeInfoList.findIndex(e => {
+                        return nowSec >= e.startSec && nowSec <= e.endSec
+                    })
                     if(index !== -1) {
                         // 当前时间在范围内，自动跳转对应项
                         this.openRealtime(this.codeInfoList[index].code)

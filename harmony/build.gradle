@@ -3,21 +3,21 @@ apply plugin: 'com.huawei.ohos.app'
 
 //加载签名信息配置文件
 // https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404
-def signingConfigPropsFile = rootProject.file("signing-config.properties")
-def signingConfigProps = new Properties()
-signingConfigProps.load((new FileInputStream(signingConfigPropsFile)))
+//def signingConfigPropsFile = rootProject.file("signing-config.properties")
+//def signingConfigProps = new Properties()
+//signingConfigProps.load((new FileInputStream(signingConfigPropsFile)))
 
 //For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
 ohos {
     signingConfigs {
         debug {
-            storeFile file(signingConfigProps['storeFile'])
-            storePassword signingConfigProps['storePassword']
-            keyAlias signingConfigProps['keyAlias']
-            keyPassword signingConfigProps['keyPassword']
+            storeFile file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_buspush_10086000025759169.p12')
+            storePassword '0000001B26C9636C3BC61BF1EC2EC1E8CFBBAD61B6A68BD8761510DE02CDC20DA986344DD7DD72E591D5F9'
+            keyAlias = 'debugKey'
+            keyPassword '0000001B6129A206E5B2530D3A9672843434B41E01BDD6EFF6BCB61775F696B0763422D556798729CB291F'
             signAlg = 'SHA256withECDSA'
-            profile file(signingConfigProps['profile'])
-            certpath file(signingConfigProps['certpath'])
+            profile file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_buspush_10086000025759169.p7b')
+            certpath file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_buspush_10086000025759169.cer')
         }
     }
     compileSdkVersion 6

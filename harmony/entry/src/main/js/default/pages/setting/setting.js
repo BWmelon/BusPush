@@ -16,8 +16,10 @@ export default {
             //设置初始化
             let setting = storage.getSync('setting', '')
             if(!setting) {
-                storage.putSync('setting', JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3' }))
+                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3' })
+                storage.putSync('setting', str)
                 storage.flushSync()
+                setting = str
             }
 
             setting = JSON.parse(setting)

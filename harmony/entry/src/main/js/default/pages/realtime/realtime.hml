@@ -11,9 +11,9 @@
     </div>
 
     <div class="content" ref="container">
-        <marquee class="marquee">{{ codeInfo.name + ' ' + codeInfo.startSn + '→' + codeInfo.endSn + ' ' + codeInfo.sn }}
+        <marquee class="marquee" if="{{ codeInfo.code }}">{{ codeInfo.name + ' ' + codeInfo.startSn + '→' + codeInfo.endSn + ' ' + codeInfo.sn }}
         </marquee>
-        <div class="buses" show="{{ !showMap }}">
+        <div class="buses" show="{{ buses.length && !showMap }}">
             <div class="{{ $item.class }}" for="{{ buses }}">
                 <div class="buses-item-time">
                     <div class="time-value">
@@ -46,6 +46,10 @@
                 </div>
             </div>
         </div>
+        <div class="tip" if="{{ !showMap && buses.length === 0 && realtimeInfo.line }}">
+            <div class="tip-item" if="{{ realtimeInfo.line.desc }}"><text class="tip-item-text">{{ realtimeInfo.line.desc }}</text></div>
+            <div class="tip-item h2" if="{{ realtimeInfo.depDesc }}"><text class="tip-item-text">{{ realtimeInfo.depDesc }}</text></div>
+        </div>
         <div class="map" show="{{ showMap }}">
             <div class="map-item" for="{{ stations }}">
                 <div class="{{ $item.class }}">
@@ -60,6 +64,7 @@
                 <div class="map-item-name-current" if="{{ $item.order == codeInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
             </div>
         </div>
+        <div class="placeholder"></div>
     </div>
 
 </div>

@@ -85,6 +85,28 @@
     margin-left: 3px;
 }
 
+.tip {
+    font-size: 20px;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.tip-item {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+.tip-item-text {
+    width: 100%;
+}
+
+.h2 {
+    font-size: 16px;
+}
+
 .map {
     flex-direction: column;
 }
@@ -149,4 +171,8 @@
 
 .map-item-name-current {
     color: #6354cf;
+}
+
+.placeholder {
+    height: 38px;
 }

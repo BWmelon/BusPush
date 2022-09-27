@@ -4,9 +4,9 @@ import data_storage from '@ohos.data.storage';
 import featureAbility from '@ohos.ability.featureAbility'
 import vibrator from '@system.vibrator';
 import app from '@system.app'
+import router from '@system.router';
 export default {
     data: {
-        title: "",
         code: '',
         showMap: false,
         stations: [], // 站点列表
@@ -17,356 +17,8 @@ export default {
         warn: false,
         warnTime: '3',
         running: null,
-        buses: [],
-        buses1: [{
-                     "acBus": 0,
-                     "activityLink": "",
-                     "airStatus": 0,
-                     "assistDesc": "别着急，小车陪你一起等",
-                     "awayTag": 0,
-                     "beforeBaseIndex": 76,
-                     "beforeLat": 32.0038015781373,
-                     "beforeLng": 118.78811832492084,
-                     "busBaseIndex": 78,
-                     "busDesc": "",
-                     "busDescList": [],
-                     "busDescOnLine": "",
-                     "busId": "343893",
-                     "capacity": 0,
-                     "cityId": "018",
-                     "datasource": 0,
-                     "delay": 0,
-                     "delayDesc": "",
-                     "display": 0,
-                     "distanceToSc": 0,
-                     "distanceToWaitStn": 13628,
-                     "from": 33,
-                     "jrDataSrc": 173,
-                     "lat": 32.003817255953315,
-                     "licence": "343893",
-                     "link": "",
-                     "lng": 118.78815452778215,
-                     "mTicket": 0,
-                     "mileage": 2859.0,
-                     "mileageOff": 0,
-                     "mileageOn": 0,
-                     "nearestToUser": false,
-                     "newLink": "",
-                     "order": 6,
-                     "passStnTimeMS": -1,
-                     "rType": 0,
-                     "shareId": "",
-                     "showDistance": 1,
-                     "speed": 5.2,
-                     "state": 1,
-                     "syncTime": 1,
-                     "tagDesc": "",
-                     "travels": [{
-                                     "arrivalTime": 1663840978845,
-                                     "debusCost": 0,
-                                     "debusTime": 0,
-                                     "distance": 0,
-                                     "optArrivalTime": 1663840978845,
-                                     "optimisticTime": 3318,
-                                     "order": 31,
-                                     "pRate": -1.0,
-                                     "recommTip": "18:02",
-                                     "travelTime": 3318
-                                 }],
-                     "updateFrom": 32,
-                     "userName": "",
-                     "userPhoto": ""
-                 }, {
-                     "acBus": 0,
-                     "activityLink": "",
-                     "airStatus": 0,
-                     "assistDesc": "别着急，小车陪你一起等",
-                     "awayTag": 0,
-                     "beforeBaseIndex": 161,
-                     "beforeLat": 32.02330785126676,
-                     "beforeLng": 118.77906347683214,
-                     "busBaseIndex": 164,
-                     "busDesc": "",
-                     "busDescList": [],
-                     "busDescOnLine": "",
-                     "busId": "343940",
-                     "capacity": 0,
-                     "cityId": "018",
-                     "datasource": 0,
-                     "delay": 0,
-                     "delayDesc": "",
-                     "display": 0,
-                     "distanceToSc": 0,
-                     "distanceToWaitStn": 10230,
-                     "from": 33,
-                     "jrDataSrc": 173,
-                     "lat": 32.02335895108142,
-                     "licence": "343940",
-                     "link": "",
-                     "lng": 118.77907671191564,
-                     "mTicket": 0,
-                     "mileage": 6215.0,
-                     "mileageOff": 0,
-                     "mileageOn": 0,
-                     "nearestToUser": false,
-                     "newLink": "",
-                     "order": 13,
-                     "passStnTimeMS": -1,
-                     "rType": 0,
-                     "shareId": "",
-                     "showDistance": 1,
-                     "speed": 5.0,
-                     "state": 1,
-                     "syncTime": 2,
-                     "tagDesc": "",
-                     "travels": [{
-                                     "arrivalTime": 1663840120845,
-                                     "debusCost": 0,
-                                     "debusTime": 0,
-                                     "distance": 0,
-                                     "optArrivalTime": 1663840120845,
-                                     "optimisticTime": 2460,
-                                     "order": 31,
-                                     "pRate": -1.0,
-                                     "recommTip": "17:48",
-                                     "travelTime": 2460
-                                 }],
-                     "updateFrom": 32,
-                     "userName": "",
-                     "userPhoto": ""
-                 }, {
-                     "acBus": 0,
-                     "activityLink": "",
-                     "airStatus": 0,
-                     "assistDesc": "别着急，小车陪你一起等",
-                     "awayTag": 0,
-                     "beforeBaseIndex": 265,
-                     "beforeLat": 32.03399019356306,
-                     "beforeLng": 118.80760465837051,
-                     "busBaseIndex": 268,
-                     "busDesc": "",
-                     "busDescList": [],
-                     "busDescOnLine": "",
-                     "busId": "343960",
-                     "capacity": 0,
-                     "cityId": "018",
-                     "datasource": 0,
-                     "delay": 0,
-                     "delayDesc": "",
-                     "display": 0,
-                     "distanceToSc": 0,
-                     "distanceToWaitStn": 6636,
-                     "from": 33,
-                     "jrDataSrc": 173,
-                     "lat": 32.03398781957094,
-                     "licence": "343960",
-                     "link": "",
-                     "lng": 118.80766398609141,
-                     "mTicket": 0,
-                     "mileage": 9828.0,
-                     "mileageOff": 0,
-                     "mileageOn": 0,
-                     "nearestToUser": false,
-                     "newLink": "",
-                     "order": 18,
-                     "passStnTimeMS": -1,
-                     "rType": 0,
-                     "shareId": "",
-                     "showDistance": 1,
-                     "speed": 10.0,
-                     "state": 1,
-                     "syncTime": 2,
-                     "tagDesc": "",
-                     "travels": [{
-                                     "arrivalTime": 1663839182845,
-                                     "debusCost": 0,
-                                     "debusTime": 0,
-                                     "distance": 0,
-                                     "optArrivalTime": 1663839182845,
-                                     "optimisticTime": 1522,
-                                     "order": 31,
-                                     "pRate": -1.0,
-                                     "recommTip": "17:33",
-                                     "travelTime": 1522
-                                 }],
-                     "updateFrom": 32,
-                     "userName": "",
-                     "userPhoto": ""
-                 }, {
-                     "acBus": 0,
-                     "activityLink": "",
-                     "airStatus": 0,
-                     "assistDesc": "别着急，小车陪你一起等",
-                     "awayTag": 0,
-                     "beforeBaseIndex": 329,
-                     "beforeLat": 32.031071061467294,
-                     "beforeLng": 118.83484435757272,
-                     "busBaseIndex": 329,
-                     "busDesc": "",
-                     "busDescList": [],
-                     "busDescOnLine": "",
-                     "busId": "343956",
-                     "capacity": 0,
-                     "cityId": "018",
-                     "datasource": 0,
-                     "delay": 0,
-                     "delayDesc": "",
-                     "display": 0,
-                     "distanceToSc": 374,
-                     "distanceToWaitStn": 3998,
-                     "from": 33,
-                     "jrDataSrc": 173,
-                     "lat": 32.03107128480758,
-                     "licence": "343956",
-                     "link": "",
-                     "lng": 118.83492922687945,
-                     "mTicket": 0,
-                     "mileage": 12484.0,
-                     "mileageOff": 0,
-                     "mileageOn": 0,
-                     "nearestToUser": false,
-                     "newLink": "",
-                     "order": 23,
-                     "passStnTimeMS": -1,
-                     "rType": 0,
-                     "shareId": "",
-                     "showDistance": 1,
-                     "speed": 1.4,
-                     "state": 0,
-                     "syncTime": 2,
-                     "tagDesc": "",
-                     "travels": [{
-                                     "arrivalTime": 1663838618845,
-                                     "debusCost": 0,
-                                     "debusTime": 0,
-                                     "distance": 0,
-                                     "optArrivalTime": 1663838618845,
-                                     "optimisticTime": 958,
-                                     "order": 31,
-                                     "pRate": -1.0,
-                                     "recommTip": "17:23",
-                                     "travelTime": 958
-                                 }],
-                     "updateFrom": 32,
-                     "userName": "",
-                     "userPhoto": ""
-                 }, {
-                     "acBus": 0,
-                     "activityLink": "",
-                     "airStatus": 0,
-                     "assistDesc": "别着急，小车陪你一起等",
-                     "awayTag": 0,
-                     "beforeBaseIndex": 402,
-                     "beforeLat": 32.03796476011898,
-                     "beforeLng": 118.85599297421001,
-                     "busBaseIndex": 402,
-                     "busDesc": "",
-                     "busDescList": [],
-                     "busDescOnLine": "",
-                     "busId": "343957",
-                     "capacity": 0,
-                     "cityId": "018",
-                     "datasource": 0,
-                     "delay": 0,
-                     "delayDesc": "",
-                     "display": 0,
-                     "distanceToSc": 292,
-                     "distanceToWaitStn": 1115,
-                     "from": 33,
-                     "jrDataSrc": 173,
-                     "lat": 32.03797335511682,
-                     "licence": "343957",
-                     "link": "",
-                     "lng": 118.8560772425584,
-                     "mTicket": 0,
-                     "mileage": 15370.0,
-                     "mileageOff": 0,
-                     "mileageOn": 0,
-                     "nearestToUser": false,
-                     "newLink": "",
-                     "order": 29,
-                     "passStnTimeMS": -1,
-                     "rType": 0,
-                     "shareId": "",
-                     "showDistance": 1,
-                     "speed": 2.0,
-                     "state": 0,
-                     "syncTime": 2,
-                     "tagDesc": "",
-                     "travels": [{
-                                     "arrivalTime": 1663837935845,
-                                     "debusCost": 0,
-                                     "debusTime": 0,
-                                     "distance": 0,
-                                     "optArrivalTime": 1663837935845,
-                                     "optimisticTime": 275,
-                                     "order": 31,
-                                     "pRate": -1.0,
-                                     "recommTip": "17:12",
-                                     "travelTime": 275
-                                 }],
-                     "updateFrom": 32,
-                     "userName": "",
-                     "userPhoto": ""
-                 }, {
-                     "acBus": 0,
-                     "activityLink": "",
-                     "airStatus": 0,
-                     "assistDesc": "点击查看地图位置",
-                     "awayTag": 0,
-                     "beforeBaseIndex": 414,
-                     "beforeLat": 32.03926094499581,
-                     "beforeLng": 118.86001349251853,
-                     "busBaseIndex": 414,
-                     "busDesc": "",
-                     "busDescList": [],
-                     "busDescOnLine": "",
-                     "busId": "343886",
-                     "capacity": 0,
-                     "cityId": "018",
-                     "datasource": 0,
-                     "delay": 0,
-                     "delayDesc": "",
-                     "display": 0,
-                     "distanceToSc": 256,
-                     "distanceToWaitStn": 700,
-                     "from": 33,
-                     "jrDataSrc": 173,
-                     "lat": 32.039293998059826,
-                     "licence": "343886",
-                     "link": "",
-                     "lng": 118.86008888321511,
-                     "mTicket": 0,
-                     "mileage": 15785.0,
-                     "mileageOff": 0,
-                     "mileageOn": 0,
-                     "nearestToUser": false,
-                     "newLink": "",
-                     "order": 30,
-                     "passStnTimeMS": -1,
-                     "rType": 0,
-                     "shareId": "",
-                     "showDistance": 1,
-                     "speed": 5.0,
-                     "state": 0,
-                     "syncTime": 1,
-                     "tagDesc": "",
-                     "travels": [{
-                                     "arrivalTime": 1663837816845,
-                                     "debusCost": 0,
-                                     "debusTime": 0,
-                                     "distance": 0,
-                                     "optArrivalTime": 1663837816845,
-                                     "optimisticTime": 156,
-                                     "order": 31,
-                                     "pRate": -1.0,
-                                     "recommTip": "17:10",
-                                     "travelTime": 156
-                                 }],
-                     "updateFrom": 32,
-                     "userName": "",
-                     "userPhoto": ""
-                 }]
+        buses: [], // 所有当前未到站车辆
+        busesAll: [], // 所有车辆（包含已过站）
     },
     onInit() {
         let context = featureAbility.getContext();
@@ -421,9 +73,10 @@ export default {
 
                 if(result.errCode == 0) {
                     this.codeInfo = result.data.codeInfo
-                    this.getStations()
+
                     this.realtimeInfo = result.data.realtime.data
-                    let buses = result.data.realtime.data.buses.filter(e => e.travels.length > 0).reverse()
+                    this.busesAll = result.data.realtime.data.buses.reverse()
+                    let buses = result.data.realtime.data.buses.filter(e => e.travels.length > 0)
                     buses.map(e => {
                         e.class = 'buses-item'
                     })
@@ -452,20 +105,38 @@ export default {
 
                     this.buses = buses
 
-                    this.title= JSON.stringify(this.buses)
+                    this.getStations()
                 } else if(result.errCode == 1) {
                     prompt.showToast({message: result.errMsg})
+                    setTimeout(() => {
+                        router.back({
+                            uri: 'pages/code/code'
+                        })
+                    }, 2000)
                 } else {
                     prompt.showToast({message: '系统出错，请联系管理员'})
+                    setTimeout(() => {
+                        router.back({
+                            uri: 'pages/code/code'
+                        })
+                    }, 2000)
                 }
             } else {
-//                this.title = JSON.stringify(res)
                 prompt.showToast({message: '网络连接失败，请联系管理员'})
+                setTimeout(() => {
+                    router.back({
+                        uri: 'pages/code/code'
+                    })
+                }, 2000)
             }
             this.countdown = this.countdownOrigin
         }).catch(err => {
-            this.title = JSON.stringify(err)
             prompt.showToast({message: '网络连接失败，请联系管理员'})
+            setTimeout(() => {
+                router.back({
+                    uri: 'pages/code/code'
+                })
+            }, 2000)
             this.countdown = this.countdownOrigin
         })
     },
@@ -505,12 +176,10 @@ export default {
                     prompt.showToast({message: '系统出错，请联系管理员'})
                 }
             } else {
-                //                this.title = JSON.stringify(res)
                 prompt.showToast({message: '网络连接失败，请联系管理员'})
             }
             this.countdown = this.countdownOrigin
         }).catch(err => {
-            this.title = JSON.stringify(err)
             prompt.showToast({message: '网络连接失败，请联系管理员'})
             this.countdown = this.countdownOrigin
         })
@@ -528,7 +197,7 @@ export default {
      */
     handleStationsBusDisplay() {
         this.stations.map(item => {
-            let arr = this.buses.filter(e => e.order == item.order)
+            let arr = this.busesAll.filter(e => e.order == item.order)
             if(arr.length) {
                 let bus = arr[0]
                 item.show = true
@@ -544,10 +213,19 @@ export default {
      */
     handleClick() {
         this.showMap = !this.showMap
-        this.$refs.container.scrollBy({
-            dy: this.showMap ? this.codeInfo.targetOrder * 40 - 90 : 0,
-            smooth: true
-        })
+        if(this.showMap) {
+            this.$refs.container.scrollBy({
+                dy: (this.codeInfo.targetOrder * 40 - 90) - this.$refs.container.getScrollOffset().y,
+                smooth: true
+            })
+
+
+        } else {
+            this.$refs.container.scrollBy({
+                dy: -10000 // 回到顶部
+            })
+
+        }
     },
     /**
      * 退出应用
