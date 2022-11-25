@@ -5,7 +5,8 @@ export default {
     data: {
         warn: false,
         warnTime: '3',
-        range: []
+        range: [],
+        selectedIndex: 0, // 索引
     },
     onInit() {
         this.initRange()
@@ -17,13 +18,14 @@ export default {
             setting = JSON.parse(setting)
             this.warn = setting.warn
             this.warnTime = setting.warnTime
+            this.selectedIndex = this.range.findIndex(e => e === this.warnTime)
         }).catch((err) => {
             console.log(err)
             prompt.showToast({message: '配置读取失败，请联系管理员'})
         })
     },
     /**
-     * 初始化时间选择
+     * 初始化时间选
      */
     initRange() {
         new Array(15).fill('').map((e, index) => {
@@ -36,6 +38,7 @@ export default {
      */
     handleChangeWarnTime(e) {
         this.warnTime = e.newValue
+        this.selectedIndex = this.range.findIndex(e => e === this.warnTime)
         let context = featureAbility.getContext();
         context.getCacheDir().then(path => {
             let storage = data_storage.getStorageSync(path)

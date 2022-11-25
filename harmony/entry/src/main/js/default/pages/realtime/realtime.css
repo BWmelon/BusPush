@@ -152,12 +152,10 @@
     width: 6px;
     height: 6px;
     border-radius: 3px;
-    border: 1px solid #6354cf;
     background-color: #6354cf;
     position: absolute;
     left: 8px;
-    top: 50%;
-    margin-top: -3px;
+    top: 17px;
     z-index: 1;
 }
 

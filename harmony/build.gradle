@@ -11,13 +11,22 @@ apply plugin: 'com.huawei.ohos.app'
 ohos {
     signingConfigs {
         debug {
-            storeFile file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_buspush_10086000025759169.p12')
-            storePassword '0000001B26C9636C3BC61BF1EC2EC1E8CFBBAD61B6A68BD8761510DE02CDC20DA986344DD7DD72E591D5F9'
+            storeFile file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_com.bwmelon.buspush_10086000025759169.p12')
+            storePassword '00000019D988B599FA763A4E0DCF6602187BB326DAAF3E9923D9E84F18EC8373FEE84357727226015A'
             keyAlias = 'debugKey'
-            keyPassword '0000001B6129A206E5B2530D3A9672843434B41E01BDD6EFF6BCB61775F696B0763422D556798729CB291F'
+            keyPassword '00000019D4C51813AE475935ADB5A13F84E0825F82D0F3F4932B62B244CE0AEBAE89190434872F87D9'
             signAlg = 'SHA256withECDSA'
-            profile file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_buspush_10086000025759169.p7b')
-            certpath file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_buspush_10086000025759169.cer')
+            profile file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_com.bwmelon.buspush_10086000025759169.p7b')
+            certpath file('C:\\Users\\BWmelon\\.ohos\\config\\auto_debug_com.bwmelon.buspush_10086000025759169.cer')
+        }
+        release {
+            storeFile file('D:\\key\\buspush_release.p12')
+            storePassword '0000001EF0FD3C476A1FE501DD34E00462B5F9FD9D8FC66508CC1A6787A2231049B933BC6520777F0CBB299449AA'
+            keyAlias = 'buspush'
+            keyPassword '0000001EB8A64BDCE35CAF0DA39FA3C10568E68C2F56AFB7D3EBB5678845238283C0605A72D2127F11507BD63BAB'
+            signAlg = 'SHA256withECDSA'
+            profile file('D:\\key\\buspushRelease.p7b')
+            certpath file('D:\\key\\腕上公交发布.cer')
         }
     }
     compileSdkVersion 6

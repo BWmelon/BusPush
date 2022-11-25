@@ -7,7 +7,7 @@
         <div class="list-item" if="{{ warn }}">
             <div class="list-item-label"><text>提前时间</text></div>
             <div class="list-item-value">
-                <picker-view class="value-picker" type="text" range="{{ range }}" selected="{{ warnTime }}" indicatorsuffix="m" @change="handleChangeWarnTime"></picker-view>
+                <picker-view class="value-picker" type="text" range="{{ range }}" selected="{{ selectedIndex }}" indicatorsuffix="m" @change="handleChangeWarnTime"></picker-view>
             </div>
         </div>
     </div>

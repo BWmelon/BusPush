@@ -13,6 +13,18 @@
       </view>
       <i class="item-right iconfont icon-jiantouyou"></i>
     </view>
+    <view class="mine-list-item">
+      <view class="item-left">
+        <i class="item-left-icon iconfont icon-fankui"></i>
+        <button
+          class="item-left-label"
+          plain="true"
+          open-type="contact"
+        >问题反馈/功能建议
+        </button>
+      </view>
+      <i class="item-right iconfont icon-jiantouyou"></i>
+    </view>
   </view>
 </view>
 
