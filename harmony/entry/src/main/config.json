@@ -34,6 +34,15 @@
     "deviceType": [
       "wearable"
     ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "hwc-theme",
+          "extra": "",
+          "value": "androidhwext:style/Theme.Emui.Translucent.NoTitleBar"
+        }
+      ]
+    },
     "abilities": [
       {
         "skills": [
@@ -73,7 +82,8 @@
           "pages/setting/setting",
           "pages/refreshTime/refreshTime",
           "pages/index/index",
-          "pages/warn/warn"
+          "pages/warn/warn",
+          "pages/privacy/privacy"
         ],
         "name": "default",
         "window": {

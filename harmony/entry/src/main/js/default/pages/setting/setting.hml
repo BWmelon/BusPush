@@ -4,7 +4,10 @@
             <div class="content-label">
                 <text>刷新间隔</text>
             </div>
-            <div class="content-value padding"><text>{{ refreshTime }}秒</text></div>
+            <div class="content-value padding">
+                <text>{{ refreshTime }}秒</text>
+                <image class="right-icon" src="/common/images/right.png"></image>
+            </div>
         </div>
     </div>
     <div class="container-item">
@@ -12,7 +15,10 @@
             <div class="content-label">
                 <text>到站提醒</text>
             </div>
-            <div class="content-value padding"><text>{{ warn ? '已开启' : '未开启' }}</text></div>
+            <div class="content-value padding">
+                <text>{{ warn ? '已开启' : '未开启' }}</text>
+                <image class="right-icon" src="/common/images/right.png"></image>
+            </div>
         </div>
     </div>
     <div class="container-item">
@@ -22,6 +28,16 @@
             </div>
             <div class="content-value">
                 <switch checked="{{ autoQuery }}" @change="handleChangeAutoQuery"></switch>
+            </div>
+        </div>
+    </div>
+    <div class="container-item">
+        <div class="container-item-content"  @click="openPage('privacy')">
+            <div class="content-label">
+                <text>隐私政策</text>
+            </div>
+            <div class="content-value padding">
+                <image class="right-icon" src="/common/images/right.png"></image>
             </div>
         </div>
     </div>

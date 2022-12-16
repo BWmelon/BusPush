@@ -14,7 +14,7 @@ export default {
             let setting = storage.getSync('setting', '')
 
             if(!setting) {
-                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3' })
+                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3', readPrivacy: false })
                 storage.putSync('setting', str)
                 storage.flushSync()
                 setting = str
@@ -26,8 +26,10 @@ export default {
             this.judgeLoop()
 
 
-
-            if(!this.codeInfoList.length) {
+            if(!setting.readPrivacy) {
+                // 没有同意隐私政策，跳转隐私政策页面
+                this.openPage('privacy')
+            } else if(!this.codeInfoList.length) {
                 // 没有查询码，自动跳转到扫码页面
                 this.openPage('generate')
             } else {

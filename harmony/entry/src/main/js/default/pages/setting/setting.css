@@ -22,8 +22,18 @@
 }
 
 .content-label {
+    font-size: 16px;
+}
 
+.content-value {
+    font-size: 16px;
+    align-items: center;
+}
 
+.right-icon {
+    width: 10px;
+    height: 20px;
+    margin-left: 8px;
 }
 
 .padding {

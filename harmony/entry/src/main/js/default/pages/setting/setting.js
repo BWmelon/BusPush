@@ -16,7 +16,7 @@ export default {
             //设置初始化
             let setting = storage.getSync('setting', '')
             if(!setting) {
-                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3' })
+                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3', readPrivacy: false })
                 storage.putSync('setting', str)
                 storage.flushSync()
                 setting = str
@@ -50,8 +50,13 @@ export default {
      * @param e
      */
     openPage(e) {
+        let params = {}
+        if(e === 'privacy') {
+            params.isClear = true
+        }
         router.push({
             uri: `pages/${e}/${e}`,
+            params
         })
     }
 }
