@@ -212,14 +212,16 @@ export default {
      * 单机切换显示模式
      */
     handleClick() {
+        if(!this.stations.length) {
+            prompt.showToast({message: '站点列表加载中，请稍后再试'})
+            return
+        }
         this.showMap = !this.showMap
         if(this.showMap) {
             this.$refs.container.scrollBy({
                 dy: (this.codeInfo.targetOrder * 40 - 90) - this.$refs.container.getScrollOffset().y,
                 smooth: true
             })
-
-
         } else {
             this.$refs.container.scrollBy({
                 dy: -10000 // 回到顶部

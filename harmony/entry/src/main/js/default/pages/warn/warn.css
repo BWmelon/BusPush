@@ -40,9 +40,9 @@
 }
 
 .tip {
-    font-size: 8px;
+    font-size: 10px;
     text-align: center;
     color: #ccc;
     margin: 6px 40px 0;
-    line-height: 12px;
+    line-height: 16px;
 }

@@ -1,4 +1,4 @@
-<div class="container" @click="handleClick" @longpress="handleLongpress">
+<div class="container" @longpress="handleLongpress">
     <div class="container-progress">
         <progress
                 class="container-progress-el"
@@ -10,10 +10,12 @@
                 ></progress>
     </div>
 
-    <div class="content" ref="container">
-        <marquee class="marquee" if="{{ codeInfo.code }}">{{ codeInfo.name + ' ' + codeInfo.startSn + '→' + codeInfo.endSn + ' ' + codeInfo.sn }}
-        </marquee>
-        <div class="buses" show="{{ buses.length && !showMap }}">
+    <list @click="handleClick" itemscale="false" class="content" ref="container">
+        <list-item clickeffect="false" @click="handleClick">
+            <marquee class="marquee" if="{{ codeInfo.code }}">{{ codeInfo.name + ' ' + codeInfo.startSn + '→' + codeInfo.endSn + ' ' + codeInfo.sn }}
+            </marquee>
+        </list-item>
+        <list-item clickeffect="false" class="buses" show="{{ buses.length && !showMap }}" @click="handleClick">
             <div class="{{ $item.class }}" for="{{ buses }}">
                 <div class="buses-item-time">
                     <div class="time-value">
@@ -45,12 +47,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tip" if="{{ !showMap && buses.length === 0 && realtimeInfo.line }}">
+        </list-item>
+        <list-item clickeffect="false" class="tip" if="{{ !showMap && buses.length === 0 && realtimeInfo.line }}" @click="handleClick">
             <div class="tip-item" if="{{ realtimeInfo.line.desc }}"><text class="tip-item-text">{{ realtimeInfo.line.desc }}</text></div>
             <div class="tip-item h2" if="{{ realtimeInfo.depDesc }}"><text class="tip-item-text">{{ realtimeInfo.depDesc }}</text></div>
-        </div>
-        <div class="map" show="{{ showMap }}">
+        </list-item>
+        <list-item clickeffect="false" class="map" show="{{ showMap }}" @click="handleClick">
             <div class="map-item" for="{{ stations }}">
                 <div class="{{ $item.class }}">
                     <image class="bus-icon" if="{{ $item.show }}" src="/common/images/bus-front.png"></image>
@@ -63,8 +65,8 @@
                 <div class="map-item-name" if="{{ $item.order != codeInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
                 <div class="map-item-name-current" if="{{ $item.order == codeInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
             </div>
-        </div>
-        <div class="placeholder"></div>
-    </div>
+        </list-item>
+        <list-item clickeffect="false" class="placeholder" @click="handleClick"></list-item>
+    </list>
 
 </div>

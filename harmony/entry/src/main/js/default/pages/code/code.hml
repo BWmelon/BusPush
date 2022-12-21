@@ -1,36 +1,34 @@
-<div class="container">
-    <div class="container-code">
-        <div class="container-code-empty"></div>
-        <div class="container-code-item "  for="{{ codeInfoList }}" style="height: 60px;" @click="openRealtime($item.code)" @longpress="showDeleteDialog($item.code)">
-            <div class="item-bus">
-                <image class="item-bus-img" src="/common/images/bus.png"></image>
+<list class="container-code" itemscale="false" scrolleffect="no">
+    <list-item if="{{ codeInfoList.length === 0 }}" class="container-code-empty" clickeffect="false"></list-item>
+    <list-item if="{{ codeInfoList.length > 0 }}" class="container-code-not-empty" clickeffect="false"></list-item>
+    <list-item class="container-code-item" clickeffect="false" for="{{ codeInfoList }}" @click="openRealtime($item.code)" @longpress="showDeleteDialog($item.code)">
+        <div class="item-bus">
+            <image class="item-bus-img" src="/common/images/bus.png"></image>
+        </div>
+        <div class="item-info">
+            <div class="item-info-row">
+                <image class="row-img" src="/common/images/sign.png"></image>
+                <marquee class="row-value" if="{{ $item.nameLoop }}">{{ $item.name }}</marquee>
+                <text class="row-value" if="{{ !$item.nameLoop }}">{{ $item.name }}</text>
             </div>
-            <div class="item-info">
-                <div class="item-info-row">
-                    <image class="row-img" src="/common/images/sign.png"></image>
-                    <marquee class="row-value" if="{{ $item.nameLoop }}">{{ $item.name }}</marquee>
-                    <text class="row-value" if="{{ !$item.nameLoop }}">{{ $item.name }}</text>
-                </div>
-                <div class="item-info-row">
-                    <image class="row-img" src="/common/images/location.png"></image>
-                    <marquee class="row-value" if="{{ $item.snLoop }}">{{ $item.sn }}</marquee>
-                    <text class="row-value" if="{{ !$item.snLoop }}">{{ $item.sn }}</text>
-                </div>
-                <div class="item-info-row">
-                    <image class="row-img" src="/common/images/line.png"></image>
-                    <marquee class="row-value" if="{{ !$item.lineLoop }}">{{ $item.startSn }} → {{ $item.endSn }}</marquee>
-                    <text class="row-value" if="{{ $item.lineLoop }}">{{ $item.startSn }} → {{ $item.endSn }}</text>
-                </div>
-                <div class="item-info-row">
-                    <image class="row-img" src="/common/images/num.png"></image>
-                    <text class="row-value">{{ $item.code }}</text>
-                </div>
+            <div class="item-info-row">
+                <image class="row-img" src="/common/images/location.png"></image>
+                <marquee class="row-value" if="{{ $item.snLoop }}">{{ $item.sn }}</marquee>
+                <text class="row-value" if="{{ !$item.snLoop }}">{{ $item.sn }}</text>
+            </div>
+            <div class="item-info-row">
+                <image class="row-img" src="/common/images/line.png"></image>
+                <marquee class="row-value" if="{{ !$item.lineLoop }}">{{ $item.startSn }} → {{ $item.endSn }}</marquee>
+                <text class="row-value" if="{{ $item.lineLoop }}">{{ $item.startSn }} → {{ $item.endSn }}</text>
+            </div>
+            <div class="item-info-row">
+                <image class="row-img" src="/common/images/num.png"></image>
+                <text class="row-value">{{ $item.code }}</text>
             </div>
         </div>
-        <div class="container-buttons">
-            <button class="container-buttons-item add" type="circle" icon="/common/images/add.png" @click="openPage('generate')"></button>
-            <button class="container-buttons-item setting" type="circle" icon="/common/images/setting.png" @click="openPage('setting')"></button>
-        </div>
-    </div>
-
-</div>
+    </list-item>
+    <list-item class="container-buttons" clickeffect="false">
+        <button class="container-buttons-item add" type="circle" icon="/common/images/add.png" @click="openPage('generate')"></button>
+        <button class="container-buttons-item setting" type="circle" icon="/common/images/setting.png" @click="openPage('setting')"></button>
+    </list-item>
+</list>
