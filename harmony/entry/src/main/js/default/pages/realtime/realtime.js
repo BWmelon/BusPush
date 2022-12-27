@@ -1,10 +1,9 @@
 import http from '@ohos.net.http';
 import prompt from '@system.prompt';
-import data_storage from '@ohos.data.storage';
-import featureAbility from '@ohos.ability.featureAbility'
 import vibrator from '@system.vibrator';
 import app from '@system.app'
 import router from '@system.router';
+import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         code: '',
@@ -17,13 +16,12 @@ export default {
         warn: false,
         warnTime: '3',
         running: null,
+        showLoading: false,
         buses: [], // 所有当前未到站车辆
         busesAll: [], // 所有车辆（包含已过站）
     },
-    onInit() {
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
+    onReady() {
+        getStorage().then(storage => {
             //设置初始化
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
@@ -32,10 +30,9 @@ export default {
             this.warn = setting.warn
             this.warnTime = setting.warnTime
 
-
-            this.getRealtime()
+            this.getRealtime(true)
             this.running = setInterval(() => {
-                if(this.countdown <= 0) {
+                if (this.countdown <= 0) {
                     this.getRealtime()
                     this.countdown = this.countdownOrigin
 
@@ -54,24 +51,29 @@ export default {
     },
     /**
      * 获取实时信息
-     * @param code 查询码
+     * @param first 首次查询
      */
-    getRealtime() {
+    getRealtime(first = false) {
+        if (first) {
+            setTimeout(() => {
+                this.showLoading = true
+            }, 100)
+        }
         let httpRequest = http.createHttp();
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
         httpRequest.request(
-            `https://buspushapi.bwmelon.com/watch/getRealtime?code=${this.code}`,
-            {
+            `https://buspushapi.bwmelon.com/watch/getRealtime?code=${this.code}`, {
                 // 开发者根据自身业务需要添加header字段
                 header: {
                     "Content-Type": "application/json"
                 },
             }
         ).then(res => {
-            if(res.responseCode == 200) {
+            this.showLoading = false
+            if (res.responseCode == 200) {
                 let result = JSON.parse(res.result)
 
-                if(result.errCode == 0) {
+                if (result.errCode == 0) {
                     this.codeInfo = result.data.codeInfo
 
                     this.realtimeInfo = result.data.realtime.data
@@ -82,10 +84,10 @@ export default {
                     })
 
                     // 判断到站提醒
-                    if(buses.length && this.warn) {
+                    if (buses.length && this.warn) {
                         let firstBus = buses[0]
                         let time = (firstBus.travels[0].travelTime / 60).toFixed(0)
-                        if(time <= Number(this.warnTime)) {
+                        if (time <= Number(this.warnTime)) {
                             // 在提前时间范围内，提醒
                             firstBus.class = 'buses-item-warn'
                             vibrator.vibrate({
@@ -106,15 +108,15 @@ export default {
                     this.buses = buses
 
                     this.getStations()
-                } else if(result.errCode == 1) {
-                    prompt.showToast({message: result.errMsg})
+                } else if (result.errCode == 1) {
+                    prompt.showToast({ message: result.errMsg })
                     setTimeout(() => {
                         router.back({
                             uri: 'pages/code/code'
                         })
                     }, 2000)
                 } else {
-                    prompt.showToast({message: '系统出错，请联系管理员'})
+                    prompt.showToast({ message: '系统出错，请联系管理员' })
                     setTimeout(() => {
                         router.back({
                             uri: 'pages/code/code'
@@ -122,7 +124,7 @@ export default {
                     }, 2000)
                 }
             } else {
-                prompt.showToast({message: '网络连接失败，请联系管理员'})
+                prompt.showToast({ message: '网络连接失败，请联系管理员' })
                 setTimeout(() => {
                     router.back({
                         uri: 'pages/code/code'
@@ -131,7 +133,8 @@ export default {
             }
             this.countdown = this.countdownOrigin
         }).catch(err => {
-            prompt.showToast({message: '网络连接失败，请联系管理员'})
+            this.showLoading = false
+            prompt.showToast({ message: '网络连接失败，请联系管理员' })
             setTimeout(() => {
                 router.back({
                     uri: 'pages/code/code'
@@ -145,42 +148,41 @@ export default {
      * @param code 查询码
      */
     getStations() {
-        if(this.stations.length) {
+        if (this.stations.length) {
             this.handleStationsBusDisplay()
         }
         // 已加载，不再请求
-        if(this.stations.length !== 0) {
+        if (this.stations.length !== 0) {
             return
         }
         let httpRequest = http.createHttp();
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
         httpRequest.request(
-            `https://buspushapi.bwmelon.com/watch/getLineRoute?lineId=${this.codeInfo.lineId}&cityId=${this.codeInfo.cityId}`,
-            {
+            `https://buspushapi.bwmelon.com/watch/getLineRoute?lineId=${this.codeInfo.lineId}&cityId=${this.codeInfo.cityId}`, {
                 // 开发者根据自身业务需要添加header字段
                 header: {
                     "Content-Type": "application/json"
                 },
             }
         ).then(res => {
-            if(res.responseCode == 200) {
+            if (res.responseCode == 200) {
                 let result = JSON.parse(res.result)
 
-                if(result.errCode == 0) {
+                if (result.errCode == 0) {
                     this.stations = result.data
                     this.handleStationsData()
                     this.handleStationsBusDisplay()
-                } else if(result.errCode == 1) {
-                    prompt.showToast({message: result.errMsg})
+                } else if (result.errCode == 1) {
+                    prompt.showToast({ message: result.errMsg })
                 } else {
-                    prompt.showToast({message: '系统出错，请联系管理员'})
+                    prompt.showToast({ message: '系统出错，请联系管理员' })
                 }
             } else {
-                prompt.showToast({message: '网络连接失败，请联系管理员'})
+                prompt.showToast({ message: '网络连接失败，请联系管理员' })
             }
             this.countdown = this.countdownOrigin
         }).catch(err => {
-            prompt.showToast({message: '网络连接失败，请联系管理员'})
+            prompt.showToast({ message: '网络连接失败，请联系管理员' })
             this.countdown = this.countdownOrigin
         })
     },
@@ -198,7 +200,7 @@ export default {
     handleStationsBusDisplay() {
         this.stations.map(item => {
             let arr = this.busesAll.filter(e => e.order == item.order)
-            if(arr.length) {
+            if (arr.length) {
                 let bus = arr[0]
                 item.show = true
                 item.class = bus.state === 1 ? 'map-item-bus-margin' : 'map-item-bus' // map-item-bus为已到站 map-item-bus-margin为在途中
@@ -212,20 +214,18 @@ export default {
      * 单机切换显示模式
      */
     handleClick() {
-        if(!this.stations.length) {
-            prompt.showToast({message: '站点列表加载中，请稍后再试'})
+        if (!this.stations.length) {
+            prompt.showToast({ message: '站点列表加载中，请稍后再试' })
             return
         }
         this.showMap = !this.showMap
-        if(this.showMap) {
+        if (this.showMap) {
             this.$refs.container.scrollBy({
                 dy: (this.codeInfo.targetOrder * 40 - 90) - this.$refs.container.getScrollOffset().y,
                 smooth: true
             })
         } else {
-            this.$refs.container.scrollBy({
-                dy: -10000 // 回到顶部
-            })
+            this.$refs.container.scrollTop({ smooth: true })
 
         }
     },
@@ -236,8 +236,7 @@ export default {
         prompt.showDialog({
             title: '提示',
             message: '是否退出应用？',
-            buttons: [
-                {
+            buttons: [{
                     text: 'button',
                     color: '#6354cf',
                 },
@@ -248,7 +247,7 @@ export default {
             ],
             success: function(data) {
                 console.log('dialog success callback，click button : ' + data.index);
-                if(data.index == 1) {
+                if (data.index == 1) {
                     app.terminate();
                 }
             },

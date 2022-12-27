@@ -1,6 +1,4 @@
-import data_storage from '@ohos.data.storage';
-import featureAbility from '@ohos.ability.featureAbility'
-import prompt from '@system.prompt';
+import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         min: 15,
@@ -8,15 +6,8 @@ export default {
         refreshTime: 30,
     },
     onInit() {
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
-            //设置初始化
+        getStorage().then(storage => {
             let setting = storage.getSync('setting', '')
-            if(!setting) {
-                storage.putSync('setting', JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3', readPrivacy: false }))
-                storage.flushSync()
-            }
 
             setting = JSON.parse(setting)
             this.refreshTime = setting.refreshTime
@@ -27,10 +18,7 @@ export default {
     onChangeTime(e) {
         this.refreshTime = Math.round(e.progress)
         if(e.isEnd) {
-            let context = featureAbility.getContext();
-            context.getCacheDir().then(path => {
-                let storage = data_storage.getStorageSync(path)
-                //设置初始化
+            getStorage().then(storage => {
                 let setting = storage.getSync('setting', '')
 
                 setting = JSON.parse(setting)

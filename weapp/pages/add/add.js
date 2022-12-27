@@ -38,22 +38,22 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: (options) => {
-      codeCollection.find({ openid: app.globalData.openid }).then(res => {
-        if(res.result.length >= 10) {
-          wx.showModal({
-            title: '提示',
-            content: '最多只能添加10条查询码，请删除不需要的查询码后再添加',
-            showCancel: false,
-            success: (res) => {
-              if(res.confirm) {
-                wx.navigateBack({
-                  delta: 0,
+        codeCollection.find({ openid: app.globalData.openid }).then(res => {
+            if (res.result.length >= 10) {
+                wx.showModal({
+                    title: '提示',
+                    content: '最多只能添加10条查询码，请删除不需要的查询码后再添加',
+                    showCancel: false,
+                    success: (res) => {
+                        if (res.confirm) {
+                            wx.navigateBack({
+                                delta: 0,
+                            })
+                        }
+                    }
                 })
-              }
-            } 
-          })
-        }
-      })
+            }
+        })
     },
 
 
@@ -92,13 +92,13 @@ Page({
      * 时间提示
      */
     showTip() {
-      Dialog.alert({
-        title: '提示',
-        message: '该功能需要配合智能穿戴端设置-自动查询使用，开启后，打开智能穿戴端会自动进入查询对应时间段内公交，减少操作。例如预计需要早上8点和下午5点查看公交，可将早上的时间范围选择为7:00-9:00，下午的时间选择为4:00-6:00，在不同时间段打开智能穿戴设备端会自动查询早上和下午公交。如无需使用，请保持默认时间为00:00-23:59，无需修改。',
-        theme: 'round-button',
-      }).then(() => {
-        // on close
-      });
+        Dialog.alert({
+            title: '提示',
+            message: '该功能需要配合智能穿戴端设置-自动查询使用，开启后，打开智能穿戴端会自动进入查询对应时间段内公交，减少操作。例如预计需要早上8点和下午5点查看公交，可将早上的时间范围选择为7:00-9:00，下午的时间选择为4:00-6:00，在不同时间段打开智能穿戴设备端会自动查询早上和下午公交。如无需使用，请保持默认时间为00:00-23:59，无需修改。',
+            theme: 'round-button',
+        }).then(() => {
+            // on close
+        });
     },
 
     /**
@@ -162,8 +162,15 @@ Page({
             name: this.data.linesList.find(item => item.lineId === lineId).name,
         })
 
+        wx.showLoading({
+            title: '加载中',
+            mask: true,
+        });
+
+
         mpserverless.function.invoke('getLineRoute', { cityId: this.data.cityId, lineId })
             .then(res => {
+                wx.hideLoading()
                 if (res.success && res.result.errCode === 0) {
                     this.setData({
                         stationList: res.result.data
@@ -181,7 +188,7 @@ Page({
      * 选择站点
      */
     onSelectStation(e) {
-      
+
         let sId = e.currentTarget.dataset.id
         console.log(this.data.stationList.find(item => item.sId === sId).order);
         this.setData({
@@ -327,9 +334,9 @@ Page({
      * 时间选择
      * @param {object} e 时间选择对象
      */
-    onInputTime(e) {
+    onChangeTime(e) {
         this.setData({
-            currentTime: e.detail
+            currentTime: e.detail.getValues().join(':')
         })
     },
 

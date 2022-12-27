@@ -1,6 +1,5 @@
-import data_storage from '@ohos.data.storage';
-import featureAbility from '@ohos.ability.featureAbility'
 import prompt from '@system.prompt';
+import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         warn: false,
@@ -10,9 +9,7 @@ export default {
     },
     onInit() {
         this.initRange()
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
+        getStorage().then(storage => {
             //设置初始化
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
@@ -39,10 +36,7 @@ export default {
     handleChangeWarnTime(e) {
         this.warnTime = e.newValue
         this.selectedIndex = this.range.findIndex(e => e === this.warnTime)
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
-            //设置初始化
+        getStorage().then(storage => {
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
             setting.warnTime = e.newValue
@@ -59,10 +53,7 @@ export default {
      */
     handleChangeWarn(e) {
         this.warn = e.checked
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
-            //设置初始化
+        getStorage.then(storage => {
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
             setting.warn = e.checked

@@ -1,4 +1,6 @@
+<element name='loading' src='../../common/component/loading/loading.hml'></element>
 <div class="container">
+        <loading show-loading="{{ showLoading }}"></loading>
         <div class="container-input">
             <input class="container-input-el" type="number" value="{{ code }}" class="input" placeholder="请输入查询码" maxlength="{{ 6 }}" onchange="onInputCode" ></input>
         </div>

@@ -1,30 +1,21 @@
-import data_storage from '@ohos.data.storage';
 import router from '@system.router';
-import featureAbility from '@ohos.ability.featureAbility'
 import prompt from '@system.prompt';
+import { getStorage } from '../../common/utils/tools'
+
 export default {
     data: {
         codeInfoList: [],
     },
     onInit() {
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
+        getStorage().then(storage => {
             //设置初始化
             let setting = storage.getSync('setting', '')
 
-            if(!setting) {
-                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3', readPrivacy: false })
-                storage.putSync('setting', str)
-                storage.flushSync()
-                setting = str
-            }
             setting = JSON.parse(setting)
 
             let data = storage.getSync('codeInfoList', '[]')
             this.codeInfoList = JSON.parse(data)
             this.judgeLoop()
-
 
             if(!setting.readPrivacy) {
                 // 没有同意隐私政策，跳转隐私政策页面
@@ -94,9 +85,7 @@ export default {
             success: (data) => {
                 if(data.index === 1) {
                     this.codeInfoList.splice(this.codeInfoList.findIndex(e => e.code == code), 1)
-                    let context = featureAbility.getContext();
-                    context.getCacheDir().then(path => {
-                        let storage = data_storage.getStorageSync(path)
+                    getStorage().then(storage => {
                         storage.putSync('codeInfoList', JSON.stringify(this.codeInfoList))
                         storage.flushSync()
                     })

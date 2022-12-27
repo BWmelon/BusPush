@@ -1,8 +1,7 @@
 import app from '@system.app'
-import featureAbility from '@ohos.ability.featureAbility'
-import data_storage from '@ohos.data.storage';
 import prompt from '@system.prompt';
 import router from '@system.router';
+import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         isClear: false
@@ -14,9 +13,7 @@ export default {
         app.terminate();
     },
     agree() {
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
+        getStorage().then(storage => {
             //设置初始化
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
@@ -45,10 +42,7 @@ export default {
             success: function(data) {
                 console.log('dialog success callback，click button : ' + data.index);
                 if(data.index == 1) {
-                    let context = featureAbility.getContext();
-                    context.getCacheDir().then(path => {
-                        let storage = data_storage.getStorageSync(path)
-                        //设置初始化
+                    getStorage().then(storage => {
                         storage.putSync('setting', JSON.stringify({}))
                         storage.putSync('codeInfoList', JSON.stringify([]))
                         storage.flushSync()

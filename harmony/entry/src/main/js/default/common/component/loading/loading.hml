@@ -1,0 +1,6 @@
+<dialog class="dialog" id="dialog">
+    <div class="container">
+        <image class="container-icon" src="../../images/loading.gif"></image>
+        <text class="container-title">{{ title }}</text>
+    </div>
+</dialog>

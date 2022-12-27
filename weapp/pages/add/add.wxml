@@ -124,7 +124,7 @@
     <van-datetime-picker
       type="time"
       value="{{ currentTime }}"
-      bind:input="onInputTime"
+      bind:change="onChangeTime"
       bind:confirm="confirmTime"
       bind:cancel="closeDialog"
     />

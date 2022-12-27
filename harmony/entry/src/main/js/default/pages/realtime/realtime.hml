@@ -1,4 +1,6 @@
+<element name='loading' src='../../common/component/loading/loading.hml'></element>
 <div class="container" @longpress="handleLongpress">
+    <loading show-loading="{{ showLoading }}"></loading>
     <div class="container-progress">
         <progress
                 class="container-progress-el"
@@ -7,10 +9,10 @@
                 percent="{{ countdown / countdownOrigin * 100 }}"
                 secondarypercent="100"
                 scale-number="{{ 30 }}"
-                ></progress>
+        >
+        </progress>
     </div>
-
-    <list @click="handleClick" itemscale="false" class="content" ref="container">
+    <list itemscale="false" class="content" ref="container" scrolleffect="no">
         <list-item clickeffect="false" @click="handleClick">
             <marquee class="marquee" if="{{ codeInfo.code }}">{{ codeInfo.name + ' ' + codeInfo.startSn + '→' + codeInfo.endSn + ' ' + codeInfo.sn }}
             </marquee>

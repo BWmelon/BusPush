@@ -1,7 +1,6 @@
 import router from '@system.router';
-import data_storage from '@ohos.data.storage';
-import featureAbility from '@ohos.ability.featureAbility'
 import prompt from '@system.prompt';
+import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         title: "",
@@ -10,17 +9,8 @@ export default {
         warn: false
     },
     onShow() {
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
-            //设置初始化
+        getStorage().then(storage => {
             let setting = storage.getSync('setting', '')
-            if(!setting) {
-                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3', readPrivacy: false })
-                storage.putSync('setting', str)
-                storage.flushSync()
-                setting = str
-            }
 
             setting = JSON.parse(setting)
             this.autoQuery = setting.autoQuery
@@ -32,10 +22,7 @@ export default {
         })
     },
     handleChangeAutoQuery(e) {
-        let context = featureAbility.getContext();
-        context.getCacheDir().then(path => {
-            let storage = data_storage.getStorageSync(path)
-            //设置初始化
+        getStorage().then(storage => {
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
             setting.autoQuery = e.checked

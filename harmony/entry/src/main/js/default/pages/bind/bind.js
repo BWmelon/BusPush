@@ -1,11 +1,11 @@
 import router from '@system.router';
 import http from '@ohos.net.http';
-import data_storage from '@ohos.data.storage';
 import prompt from '@system.prompt';
-import featureAbility from '@ohos.ability.featureAbility'
+import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         code: '',
+        showLoading: false
     },
     onInit() {
 
@@ -25,6 +25,7 @@ export default {
             prompt.showToast({message: '请输入查询码'})
             return
         }
+        this.showLoading = true
         let httpRequest = http.createHttp();
 
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
@@ -37,12 +38,11 @@ export default {
                 },
             }
         ).then(res => {
+            this.showLoading = false
             if(res.responseCode == 200) {
                 let result = JSON.parse(res.result)
                 if(result.errCode == 0) {
-                    let context = featureAbility.getContext();
-                    context.getCacheDir().then(path => {
-                        let storage = data_storage.getStorageSync(path)
+                    getStorage().then(storage => {
                         let codeInfoList = JSON.parse(storage.getSync('codeInfoList', '[]'))
                         if(codeInfoList.find(e => e.code == result.data.code)) {
                             prompt.showToast({message: '查询码已存在，无需重复添加'})
@@ -65,8 +65,8 @@ export default {
             } else {
                 prompt.showToast({message: '网络连接失败，请联系管理员'})
             }
-
         }).catch(err => {
+            this.showLoading = false
             prompt.showToast({message: '网络连接失败，请联系管理员'})
         })
     },

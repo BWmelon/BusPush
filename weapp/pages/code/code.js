@@ -13,7 +13,13 @@ Page({
      * 获取查询码列表
      */
     getCodeList() {
+        wx.showLoading({
+            title: '加载中',
+            mask: true,
+        });
+
         codeCollection.find({ openid: app.globalData.openid }).then(res => {
+            wx.hideLoading()
             this.setData({
                 codeList: res.result
             })
