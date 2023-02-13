@@ -1,20 +1,19 @@
 <view class="code">
   <view class="code-list">
-    <van-empty description="未生成查询码" wx:if="{{ !codeList.length }}" />
+    <van-empty description="未生成查询码" wx:if="{{ !lineList.length }}" />
     <view
       class="code-list-item"
-      wx:for="{{ codeList }}"
+      wx:for="{{ lineList }}"
       wx:key="index"
     >
       <van-swipe-cell
         right-width="{{ 65 }}"
         async-close
         bind:close="onClose"
-        data-code="{{ item.code }}"
+        data-id="{{ item._id }}"
       >
         <van-cell-group>
           <view class="item-info">
-            <view class="item-info-code">{{ item.code }}</view>
             <view class="item-info-list">
               <i class="list-icon iconfont icon-chengshi"></i>
               <div class="list-value">{{ item.cityName }}</div>

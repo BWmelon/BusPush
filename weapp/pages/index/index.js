@@ -3,7 +3,7 @@
 const app = getApp()
 const { mpserverless } = getApp();
 
-import { codeCollection } from '../../utils/db'
+import { listCollection } from '../../utils/db'
 
 Page({
     data: {},

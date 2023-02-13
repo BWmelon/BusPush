@@ -1,4 +1,7 @@
 <view class="mine">
+  <view class="mine-info">
+    {{ userCode || '初始化失败' }}
+  </view>
   <view class="mine-list">
     <view
       class="mine-list-item"

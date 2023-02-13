@@ -1,4 +1,4 @@
-import { codeCollection } from '../../utils/db'
+import { lineCollection } from '../../utils/db'
 const app = getApp()
 Page({
 
@@ -6,22 +6,22 @@ Page({
      * 页面的初始数据
      */
     data: {
-        codeList: []
+        lineList: []
     },
 
     /**
-     * 获取查询码列表
+     * 获取路线列表
      */
-    getCodeList() {
+    getLineList() {
         wx.showLoading({
             title: '加载中',
             mask: true,
         });
 
-        codeCollection.find({ openid: app.globalData.openid }).then(res => {
+        lineCollection.find({ openid: app.globalData.openid }).then(res => {
             wx.hideLoading()
             this.setData({
-                codeList: res.result
+                lineList: res.result
             })
         })
     },
@@ -31,7 +31,7 @@ Page({
      * @param {object} event 当前对象
      */
     onClose(event) {
-        const code = event.currentTarget.dataset.code
+        const id = event.currentTarget.dataset.id
         const { position, instance } = event.detail;
         switch (position) {
             case 'cell':
@@ -44,8 +44,8 @@ Page({
                     showCancel: true,
                     success: (result) => {
                         if (result.confirm) {
-                            codeCollection.deleteOne({
-                                code
+                            lineCollection.deleteOne({
+                                _id: id
                             }).then(res => {
                                 if (res.affectedDocs > 0) {
                                     wx.showToast({
@@ -53,7 +53,7 @@ Page({
                                         icon: 'true'
                                     })
                                     instance.close();
-                                    this.getCodeList()
+                                    this.getLineList()
                                 } else {
                                     wx.showToast({
                                         title: '删除失败',
@@ -101,7 +101,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.getCodeList()
+        this.getLineList()
     },
 
     /**

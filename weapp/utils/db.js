@@ -1,6 +1,8 @@
 const { mpserverless } = getApp();
-const codeCollection = mpserverless.db.collection('code')
+const lineCollection = mpserverless.db.collection('line')
+const userCollection = mpserverless.db.collection('user')
 
 export {
-  codeCollection
+  lineCollection,
+  userCollection
 }

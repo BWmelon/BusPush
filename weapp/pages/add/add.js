@@ -1,12 +1,9 @@
 // pages/add/add.js
 const app = getApp()
-import {
-    createCode
-} from '../../utils/util'
 
 const { mpserverless } = getApp();
 
-import { codeCollection } from '../../utils/db'
+import { lineCollection } from '../../utils/db'
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 
 Page({
@@ -38,7 +35,19 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: (options) => {
-        codeCollection.find({ openid: app.globalData.openid }).then(res => {
+        if(!app.globalData.openid) {
+          wx.showModal({
+            title: '提示',
+            showCancel: false,
+            content: '接口初始化失败，请重新打开小程序或者联系客服',
+            complete: (res) => {
+              if (res.confirm) {
+                wx.navigateBack()
+              }
+            }
+          })
+        }
+        lineCollection.find({ openid: app.globalData.openid }).then(res => {
             if (res.result.length >= 10) {
                 wx.showModal({
                     title: '提示',
@@ -217,31 +226,13 @@ Page({
 
     },
 
-    /**
-     * 生成code
-     */
-    getCode() {
-        return new Promise((resolve, reject) => {
-            const code = createCode(6)
-            codeCollection.find({
-                code
-            }).then(res => {
-                console.log(res);
-                if (res.result.length) {
-                    this.getCode()
-                } else {
-                    resolve(code)
-                }
-            })
-        })
-    },
+    
 
     /**
      * 添加一条记录
      */
     async addRecord() {
-        let code = await this.getCode()
-        mpserverless.db.collection('code').insertOne({
+      lineCollection.insertOne({
                 userId: getApp().globalData.userId,
                 openid: getApp().globalData.openid,
                 cityName: this.data.cityName, // 城市名
@@ -256,12 +247,11 @@ Page({
                 startTime: this.data.startTime,
                 endTime: this.data.endTime,
                 date: new Date().getTime(), // 创建时间
-                code
             })
             .then(() => {
                 wx.showModal({
                     title: '提示',
-                    content: `查询码生成成功：${code}，请在穿戴设备中添加`,
+                    content: `添加成功，请在智能穿戴上重新打开软件查看`,
                     showCancel: false,
                     confirmText: '确定',
                     success: (result) => {

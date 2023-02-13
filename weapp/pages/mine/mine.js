@@ -4,8 +4,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        userCode: '',
         list: [{
-            label: '查询码',
+            label: '查询路线',
             page: 'code'
         }]
     },
@@ -39,7 +40,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+      this.setData({
+        userCode: getApp().globalData.userCode
+      })
     },
 
     /**
