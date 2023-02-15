@@ -11,7 +11,16 @@ const getStorage = () => {
             let setting = storage.getSync('setting', '')
 
             if(!setting) {
-                let str = JSON.stringify({ autoQuery: false, refreshTime: 30, warn: false, warnTime: '3', readPrivacy: false })
+                let str = JSON.stringify({
+                    autoQuery: false,
+                    refreshTime: 30,
+                    warn: false,
+                    warnTime: '3',
+                    readPrivacy: false,
+                    userInfo: {
+                        userCode: ''
+                    }
+                })
                 storage.putSync('setting', str)
                 storage.flushSync()
             }

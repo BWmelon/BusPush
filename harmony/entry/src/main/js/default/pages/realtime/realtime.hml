@@ -14,7 +14,7 @@
     </div>
     <list itemscale="false" class="content" ref="container" scrolleffect="no">
         <list-item clickeffect="false" @click="handleClick">
-            <marquee class="marquee" if="{{ codeInfo.code }}">{{ codeInfo.name + ' ' + codeInfo.startSn + '→' + codeInfo.endSn + ' ' + codeInfo.sn }}
+            <marquee class="marquee" if="{{ lineInfo._id }}">{{ lineInfo.name + ' ' + lineInfo.startSn + '→' + lineInfo.endSn + ' ' + lineInfo.sn }}
             </marquee>
         </list-item>
         <list-item clickeffect="false" class="buses" show="{{ buses.length && !showMap }}" @click="handleClick">
@@ -51,7 +51,7 @@
             </div>
         </list-item>
         <list-item clickeffect="false" class="tip" if="{{ !showMap && buses.length === 0 && realtimeInfo.line }}" @click="handleClick">
-            <div class="tip-item" if="{{ realtimeInfo.line.desc }}"><text class="tip-item-text">{{ realtimeInfo.line.desc }}</text></div>
+            <div class="tip-item" if="{{ realtimeInfo.line.desc || realtimeInfo.line.assistDesc }}"><text class="tip-item-text">{{ realtimeInfo.line.desc || realtimeInfo.line.assistDesc }}</text></div>
             <div class="tip-item h2" if="{{ realtimeInfo.depDesc }}"><text class="tip-item-text">{{ realtimeInfo.depDesc }}</text></div>
         </list-item>
         <list-item clickeffect="false" class="map" show="{{ showMap }}" @click="handleClick">
@@ -64,8 +64,8 @@
                     <div class="line-point"></div>
                     <image class="line-arrow" src="/common/images/arrow-down.png"></image>
                 </div>
-                <div class="map-item-name" if="{{ $item.order != codeInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
-                <div class="map-item-name-current" if="{{ $item.order == codeInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
+                <div class="map-item-name" if="{{ $item.order != lineInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
+                <div class="map-item-name-current" if="{{ $item.order == lineInfo.targetOrder }}"><text>{{ $item.sn }}</text></div>
             </div>
         </list-item>
         <list-item clickeffect="false" class="placeholder" @click="handleClick"></list-item>

@@ -48,10 +48,10 @@ Page({
           })
         }
         lineCollection.find({ openid: app.globalData.openid }).then(res => {
-            if (res.result.length >= 10) {
+            if (res.result.length >= 6) {
                 wx.showModal({
                     title: '提示',
-                    content: '最多只能添加10条查询码，请删除不需要的查询码后再添加',
+                    content: '最多只能添加6条查询码，请删除不需要的查询码后再添加',
                     showCancel: false,
                     success: (res) => {
                         if (res.confirm) {
@@ -251,7 +251,7 @@ Page({
             .then(() => {
                 wx.showModal({
                     title: '提示',
-                    content: `添加成功，请在智能穿戴上重新打开软件查看`,
+                    content: `添加成功，请在智能穿戴软件上刷新查看`,
                     showCancel: false,
                     confirmText: '确定',
                     success: (result) => {

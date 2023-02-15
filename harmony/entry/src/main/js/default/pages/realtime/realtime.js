@@ -6,10 +6,10 @@ import router from '@system.router';
 import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
-        code: '',
+        id: '',
         showMap: false,
         stations: [], // 站点列表
-        codeInfo: {},
+        lineInfo: {},
         realtimeInfo: {},
         countdownOrigin: 30,
         countdown: 30,
@@ -62,7 +62,7 @@ export default {
         let httpRequest = http.createHttp();
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
         httpRequest.request(
-            `https://buspushapi.bwmelon.com/watch/getRealtime?code=${this.code}`, {
+            `https://buspushapi.bwmelon.com/watch/getRealtime?id=${this.id}`, {
                 // 开发者根据自身业务需要添加header字段
                 header: {
                     "Content-Type": "application/json"
@@ -74,7 +74,7 @@ export default {
                 let result = JSON.parse(res.result)
 
                 if (result.errCode == 0) {
-                    this.codeInfo = result.data.codeInfo
+                    this.lineInfo = result.data.lineInfo
 
                     this.realtimeInfo = result.data.realtime.data
                     this.busesAll = result.data.realtime.data.buses.reverse()
@@ -145,7 +145,6 @@ export default {
     },
     /**
      * 获取站点列表
-     * @param code 查询码
      */
     getStations() {
         if (this.stations.length) {
@@ -158,7 +157,7 @@ export default {
         let httpRequest = http.createHttp();
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
         httpRequest.request(
-            `https://buspushapi.bwmelon.com/watch/getLineRoute?lineId=${this.codeInfo.lineId}&cityId=${this.codeInfo.cityId}`, {
+            `https://buspushapi.bwmelon.com/watch/getLineRoute?lineId=${this.lineInfo.lineId}&cityId=${this.lineInfo.cityId}`, {
                 // 开发者根据自身业务需要添加header字段
                 header: {
                     "Content-Type": "application/json"
@@ -221,7 +220,7 @@ export default {
         this.showMap = !this.showMap
         if (this.showMap) {
             this.$refs.container.scrollBy({
-                dy: (this.codeInfo.targetOrder * 40 - 90) - this.$refs.container.getScrollOffset().y,
+                dy: (this.lineInfo.targetOrder * 40 - 90) - this.$refs.container.getScrollOffset().y,
                 smooth: true
             })
         } else {

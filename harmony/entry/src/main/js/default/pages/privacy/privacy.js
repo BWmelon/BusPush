@@ -44,7 +44,7 @@ export default {
                 if(data.index == 1) {
                     getStorage().then(storage => {
                         storage.putSync('setting', JSON.stringify({}))
-                        storage.putSync('codeInfoList', JSON.stringify([]))
+                        storage.putSync('lineList', JSON.stringify([]))
                         storage.flushSync()
                         app.terminate();
                     }).catch((err) => {

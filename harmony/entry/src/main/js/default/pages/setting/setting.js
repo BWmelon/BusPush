@@ -6,7 +6,10 @@ export default {
         title: "",
         autoQuery: false,
         refreshTime: 0,
-        warn: false
+        warn: false,
+        userInfo:{
+            userCode: ''
+        }
     },
     onShow() {
         getStorage().then(storage => {
@@ -16,11 +19,31 @@ export default {
             this.autoQuery = setting.autoQuery
             this.refreshTime = setting.refreshTime
             this.warn = setting.warn
+
+            if(setting.userInfo.userCode) {
+                this.userInfo.userCode = setting.userInfo.userCode
+            }
         }).catch((err) => {
             console.log(err)
             prompt.showToast({message: '初始化配置失败，请联系管理员'})
         })
     },
+    /**
+     * 点击身份码事件
+     */
+    handleClickUserCode() {
+        if(this.userInfo.userCode) {
+            // 直接挑战到修改界面
+            this.openPage('bind')
+        } else {
+            // 没有绑定，跳到扫码页面
+            this.openPage('generate')
+        }
+    },
+    /**
+     * 切换自动查询
+     * @param e
+     */
     handleChangeAutoQuery(e) {
         getStorage().then(storage => {
             let setting = storage.getSync('setting', '')

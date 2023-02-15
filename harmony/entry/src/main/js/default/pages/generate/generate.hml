@@ -1,10 +1,10 @@
 <div class="container">
     <div class="container-tip">
         <div class="container-tip-item"><text>微信扫一扫</text></div>
-        <div class="container-tip-item"><text>生成公交查询码</text></div>
+        <div class="container-tip-item"><text>生成公交身份码</text></div>
     </div>
     <div class="container-qrcode">
         <image class="container-qrcode-el" src="/common/images/qrcode.jpg"></image>
     </div>
-    <button class="container-add" type="arc" @click="openPage('bind')">绑定查询码</button>
+    <button class="container-add" type="arc" @click="openPage('bind')">绑定身份码</button>
 </div>
