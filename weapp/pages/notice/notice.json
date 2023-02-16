@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "通知公告",
+    "usingComponents": {
+        "van-empty": "@vant/weapp/empty/index"
+    }
 }

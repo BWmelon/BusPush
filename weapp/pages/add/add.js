@@ -51,7 +51,7 @@ Page({
             if (res.result.length >= 6) {
                 wx.showModal({
                     title: '提示',
-                    content: '最多只能添加6条查询码，请删除不需要的查询码后再添加',
+                    content: '最多只能添加6条查询路线，请删除不需要的查询路线后再添加',
                     showCancel: false,
                     success: (res) => {
                         if (res.confirm) {

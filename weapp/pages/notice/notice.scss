@@ -1,0 +1,42 @@
+/* pages/notice/notice.wxss */
+
+.notice {
+    height: 100%;
+    overflow: auto;
+    padding: 20rpx 0 20rpx 32rpx;
+    &-item {
+        position: relative;
+        &-date {
+            color: #9195a3;
+            font-size: 28rpx;
+            display: flex;
+            &:before {
+                content: "";
+                width: 16rpx;
+                height: 16rpx;
+                border: 2rpx solid #1989fa;
+                border-radius: 50%;
+                box-sizing: border-box;
+                margin-top: 8rpx;
+                margin-right: 16rpx;
+            }
+        }
+        &-content {
+            font-size: 32rpx;
+            color: #333;
+            padding: 8rpx 32rpx 32rpx;
+        }
+        &:after {
+            content: "";
+            width: 0rpx;
+            position: absolute;
+            top: 28rpx;
+            left: 8rpx;
+            bottom: 0;
+            border-left: 2rpx dashed #ddd;
+        }
+        &:last-child:after {
+            content: none;
+        }
+    }
+}

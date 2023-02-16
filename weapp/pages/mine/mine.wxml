@@ -11,7 +11,7 @@
       data-page="{{ item.page }}"
     >
       <view class="item-left">
-        <i class="item-left-icon iconfont icon-chaxun"></i>
+        <i class="item-left-icon iconfont {{ item.icon }}"></i>
         <view class="item-left-label">{{ item.label }}</view>
       </view>
       <i class="item-right iconfont icon-jiantouyou"></i>

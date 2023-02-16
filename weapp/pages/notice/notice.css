@@ -2,16 +2,19 @@
 .notice {
   height: 100%;
   overflow: auto;
-  padding: 20rpx 0 20rpx 32rpx;
+  padding-left: 32rpx;
 }
+
 .notice-item {
   position: relative;
 }
+
 .notice-item-date {
   color: #9195a3;
   font-size: 28rpx;
   display: flex;
 }
+
 .notice-item-date:before {
   content: "";
   width: 16rpx;
@@ -22,11 +25,13 @@
   margin-top: 8rpx;
   margin-right: 16rpx;
 }
+
 .notice-item-content {
   font-size: 32rpx;
   color: #333;
   padding: 8rpx 32rpx 32rpx;
 }
+
 .notice-item:after {
   content: "";
   width: 0rpx;
@@ -36,6 +41,7 @@
   bottom: 0;
   border-left: 2rpx dashed #ddd;
 }
+
 .notice-item:last-child:after {
   content: none;
 }

@@ -2,39 +2,31 @@
 .code {
   padding: 20rpx;
 }
-
 .code-list {
   color: #fff;
 }
-
 .code-list-item {
   background-color: #1989fa;
   border-radius: 20rpx;
   overflow: hidden;
 }
-
 .code-list-item .item-info {
   padding: 20rpx 0 20rpx 20rpx;
   position: relative;
 }
-
 .code-list-item .item-info-list {
   display: flex;
   align-items: center;
 }
-
 .code-list-item .item-info-list .list-icon {
   margin-right: 20rpx;
 }
-
 .code-list-item .item-info-list .list-arrow {
   margin: 0 10rpx;
 }
-
 .code-list-item .item-info-list:nth-child(n+2) {
   margin-top: 10rpx;
 }
-
 .code-list-item .item-delete {
   background-color: #ee0a24;
   height: 100%;
@@ -44,22 +36,18 @@
   align-items: center;
   justify-content: center;
 }
-
 .code-list-item:nth-child(n+2) {
   margin-top: 20rpx;
 }
-
 .code-tip {
   margin-top: 20rpx;
   font-size: 28rpx;
   color: #999;
   line-height: 48rpx;
 }
-
 .code-tip-icon {
   margin-right: 8rpx;
 }
-
 .code-add {
   margin: 40rpx auto 0;
   display: block;

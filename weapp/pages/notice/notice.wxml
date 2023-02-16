@@ -1,2 +1,12 @@
 <!--pages/notice/notice.wxml-->
-<text>pages/notice/notice.wxml</text>
+<van-empty wx:if="{{ !noticeList.length }}" description="暂无公告" />
+<view class="notice">
+  <view class="notice-item" wx:for="{{ noticeList }}" wx:key="index">
+    <view class="notice-item-date">
+      {{ item.date }}
+    </view>
+    <view class="notice-item-content">
+      {{ item.content }}
+    </view>
+  </view>
+</view>

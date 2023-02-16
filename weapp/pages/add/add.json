@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "查询码生成",
+    "navigationBarTitleText": "查询路线生成",
     "usingComponents": {
         "van-search": "@vant/weapp/search/index",
         "van-popup": "@vant/weapp/popup/index",

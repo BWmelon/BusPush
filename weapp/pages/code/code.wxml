@@ -1,6 +1,6 @@
 <view class="code">
   <view class="code-list">
-    <van-empty description="未生成查询码" wx:if="{{ !lineList.length }}" />
+    <van-empty description="未生成查询路线" wx:if="{{ !lineList.length }}" />
     <view
       class="code-list-item"
       wx:for="{{ lineList }}"
@@ -61,7 +61,7 @@
   </van-button>
   <view class="code-tip">
     <i class="code-tip-icon iconfont icon-tishi"></i>
-    温馨提示：查询码暂不支持编辑，如需修改查询内容，请左滑删除不需要的查询码并重新生成。
+    温馨提示：查询路线暂不支持编辑，如需修改查询内容，请左滑删除不需要的查询路线并重新生成。
   </view>
 </view>
 

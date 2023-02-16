@@ -1,3 +1,13 @@
+/*
+ * @Author: BWmelon 1454490647@qq.com
+ * @Date: 2023-02-15 09:51:00
+ * @LastEditors: BWmelon 1454490647@qq.com
+ * @LastEditTime: 2023-02-15 09:52:02
+ * @FilePath: \BusPush\weapp\pages\mine\mine.js
+ * @Description: 
+ * 
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ */
 Page({
 
     /**
@@ -7,7 +17,12 @@ Page({
         userCode: '',
         list: [{
             label: '查询路线',
-            page: 'code'
+            page: 'code',
+            icon: 'icon-chaxun'
+        }, {
+            label: '通知公告',
+            page: 'notice',
+            icon: 'icon-tishi'
         }]
     },
 
@@ -40,9 +55,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-      this.setData({
-        userCode: getApp().globalData.userCode
-      })
+        this.setData({
+            userCode: getApp().globalData.userCode
+        })
     },
 
     /**
