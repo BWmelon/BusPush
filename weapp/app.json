@@ -5,7 +5,8 @@
     "pages/city/city",
     "pages/mine/mine",
     "pages/code/code",
-    "pages/notice/notice"
+    "pages/notice/notice",
+    "pages/feedback/feedback"
   ],
   "tabBar": {
     "selectedColor": "#1989fa",

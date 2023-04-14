@@ -1,0 +1,17 @@
+<!-- pages/feedback/feedback.wxml -->
+<view class="feedback">
+  <view class="feedback-tip">
+    如果您在使用过程中遇到任何问题或者有好的想法建议，请在下方进行反馈。感谢您使用我们的服务并提供宝贵的问题反馈。我们非常重视您的意见和建议，会认真查看每一条反馈消息，并尽快给您回复。
+  </view>
+  <textarea class="feedback-input" model:value="{{ content }}" placeholder="请输入内容(10-200字)" maxlength="200" />
+  <van-button class="feedback-button" round type="info" bindtap="submit">圆形按钮</van-button>
+  <button class="item-left-label" plain="true" open-type="contact">联系客服</button>
+  <view class="feedback-list">
+    <view class="feedback-list-item" wx:for="{{ list }}" wx:key="index">
+      <view class="item-content">{{ item.content }}</view>
+      <view class="item-createTime">{{ item.createTime }}</view>
+      <view></view>
+      <view>{{ item.reply || '已收到，请等待回复。' }}</view>
+    </view>
+  </view>
+</view>

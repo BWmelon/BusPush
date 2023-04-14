@@ -1,6 +1,7 @@
 {
 	"BuildOptions":{},
 	"CommonInfo":{
-		"project.ide.version":"3.0.0.991"
+		"project.ide.version":"3.0.0.991",
+		"current.select.product":""
 	}
 }

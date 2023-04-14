@@ -23,9 +23,13 @@ Page({
             label: '通知公告',
             page: 'notice',
             icon: 'icon-tishi'
-        }]
+        }, {
+          label: '问题反馈/功能建议',
+          page: 'feedback',
+          icon: 'icon-fankui'
+      }]
     },
-
+    
     /**
      * 跳转页面
      * @param {object} e 当前点击对象 
