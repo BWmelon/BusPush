@@ -1,17 +1,31 @@
 <!-- pages/feedback/feedback.wxml -->
 <view class="feedback">
   <view class="feedback-tip">
-    如果您在使用过程中遇到任何问题或者有好的想法建议，请在下方进行反馈。感谢您使用我们的服务并提供宝贵的问题反馈。我们非常重视您的意见和建议，会认真查看每一条反馈消息，并尽快给您回复。
+    如果您在使用过程中遇到任何问题或者有好的想法建议，请在下方进行反馈。我们非常重视您的意见和建议，会认真查看每一条反馈消息，并尽快给您回复。
   </view>
   <textarea class="feedback-input" model:value="{{ content }}" placeholder="请输入内容(10-200字)" maxlength="200" />
-  <van-button class="feedback-button" round type="info" bindtap="submit">圆形按钮</van-button>
-  <button class="item-left-label" plain="true" open-type="contact">联系客服</button>
+  <view class="feedback-buttons">
+    <van-button class="feedback-buttons-item" round type="info" icon="guide-o" custom-style="width: 580rpx" bindtap="submit">提 交</van-button>
+    <van-button class="feedback-buttons-item" round icon="service" type="primary" custom-style="width: 44px" open-type="contact"></van-button>
+  </view>
   <view class="feedback-list">
     <view class="feedback-list-item" wx:for="{{ list }}" wx:key="index">
+      <view class="item-comment">
+        <div class="item-comment-info">
+          <image class="info-avatar" src="../../static/images/mine-active.png"></image>
+          <view class="info-name">我</view>
+        </div>
+        <item class="item-comment-date">{{ item.createTime }}</item>
+      </view>
       <view class="item-content">{{ item.content }}</view>
-      <view class="item-createTime">{{ item.createTime }}</view>
-      <view></view>
-      <view>{{ item.reply || '已收到，请等待回复。' }}</view>
+      <view class="item-comment reply">
+        <view class="item-comment-info">
+          <image class="info-avatar" src="../../static/images/icon.png"></image>
+          <view class="info-name">腕上公交</view>
+        </view>
+        <view class="item-comment-date">{{ item.replyTime }}</view>
+      </view>
+      <view class="item-content reply">{{ item.reply || '已收到，请等待回复。' }}</view>
     </view>
   </view>
 </view>

@@ -14,11 +14,62 @@
   border-radius: 8rpx;
   margin: 0 auto;
   padding: 16rpx 24rpx;
-  width: 100%;
+  width: calc(100% - 48rpx);
   margin-top: 24rpx;
 }
 
-.feedback-button {
-  background-color: #1989fa;
-  height: 120rpx;
+.feedback-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+
+.feedback-list {
+  margin-top: 60rpx;
+}
+
+.feedback-list-item .item-comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feedback-list-item .item-comment-info {
+  display: flex;
+  align-items: center;
+}
+
+.feedback-list-item .item-comment-info .info-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.feedback-list-item .item-comment-info .info-name {
+  font-size: 32rpx;
+  color: #000;
+  margin-left: 24rpx;
+}
+
+.feedback-list-item .item-comment.reply {
+  padding-left: 84rpx;
+  margin-top: 16rpx;
+}
+
+.feedback-list-item .item-comment-date {
+  color: #CCC;
+}
+
+.feedback-list-item .item-content {
+  padding-left: 84rpx;
+  word-break: break-all;
+  color: #595959;
+}
+
+.feedback-list-item .item-content.reply {
+  padding-left: 168rpx;
+}
+
+.feedback-list-item:nth-child(n+2) {
+  margin-top: 24rpx;
 }

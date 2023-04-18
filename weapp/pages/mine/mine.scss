@@ -1,6 +1,43 @@
 /* pages/mine/mine.wxss */
 
 .mine {
+    &-card {
+        background-image: linear-gradient(60deg,#e6e6ff 100%,#e6f4ff 100%);
+        display: flex;
+        height: 400rpx;
+        padding: 0 80rpx;
+        justify-content: space-between;
+        align-items: center;
+
+        &-info {
+            .info-name {
+                color: #a6afbf;
+                font-size: 40rpx;
+            }
+
+            .info-code {
+                font-size: 60rpx;
+                font-weight: bold;
+                color: #000;
+                margin-top: 24rpx;
+            }
+        }
+
+        &-avatar {
+            width: 190rpx;
+            height: 190rpx;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            .avatar-el {
+                border-radius: 50%;
+                width: 180rpx;
+                height: 180rpx;
+            }
+        }
+    }
     &-list {
         &-item {
             padding: 0 20rpx;

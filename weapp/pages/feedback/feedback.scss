@@ -12,12 +12,61 @@
         border-radius: 8rpx;
         margin: 0 auto;
         padding: 16rpx 24rpx;
-        width: 100%;
+        width: calc(100% - 48rpx);
         margin-top: 24rpx;
     }
 
-    &-button {
-        background-color: #1989fa;
-        height: 120rpx;
+    &-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 24rpx;
+    }
+
+    &-list {
+        margin-top: 60rpx;
+        &-item {
+            .item-comment {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                &-info {
+                    display: flex;
+                    align-items: center;
+                    .info-avatar {
+                        width: 60rpx;
+                        height: 60rpx;
+                        border-radius: 50%;
+                    }
+                    .info-name {
+                        font-size: 32rpx;
+                        color: #000;
+                        margin-left: 24rpx;
+                    }
+                }
+
+                &.reply {
+                    padding-left: 84rpx;
+                    margin-top: 16rpx;
+                }
+
+                &-date {
+                    color: #CCC;
+                }
+            }
+
+            .item-content {
+                padding-left: 84rpx;
+                word-break: break-all;
+                color: #595959;
+
+                &.reply {
+                    padding-left: 168rpx;
+                }
+            }
+
+            &:nth-child(n+2) {
+                margin-top: 24rpx;
+            }
+        }
     }
 }

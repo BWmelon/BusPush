@@ -1,6 +1,12 @@
 <view class="mine">
-  <view class="mine-info">
-    {{ userCode || '初始化失败' }}
+  <view class="mine-card">
+    <view class="mine-card-info">
+      <view class="info-name">身份码</view>
+      <view class="info-code">{{ userCode || '初始化失败' }}</view>
+    </view>
+    <view class="mine-card-avatar">
+      <image class="avatar-el" src="../../static/images/icon.png"></image>
+    </view>
   </view>
   <view class="mine-list">
     <view

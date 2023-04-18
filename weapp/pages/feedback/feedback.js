@@ -10,6 +10,7 @@
  */
 // pages/feedback/feedback.js
 import { feedbackCollection } from '../../utils/db'
+import { formatTime } from '../../utils/util'
 Page({
 
     /**
@@ -28,8 +29,12 @@ Page({
     },
     getFeedbackList() {
         feedbackCollection.find({}).then(res => {
+            res.result.map(item => {
+                item.createTime = item.createTime ? formatTime(new Date(item.createTime)) : ''
+                item.replyTime = item.replyTime ? formatTime(new Date(item.replyTime)) : ''
+            })
             this.setData({
-                list: res.result
+                list: res.result.reverse()
             })
         }).catch(() => {
             wx.showToast({
