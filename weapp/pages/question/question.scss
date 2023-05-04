@@ -1,0 +1,21 @@
+/* pages/question/question.wxss */
+.question {
+    overflow: auto;
+    padding: 24rpx;
+    &-item {
+        &-q {
+            color: #666;
+            font-size: 32rpx;
+        }
+
+        &-a {
+            color: #999;
+            margin-top: 12rpx;
+            line-height: 48rpx;
+        }
+
+        &:nth-child(n+2) {
+            margin-top: 36rpx;
+        }
+    }
+}

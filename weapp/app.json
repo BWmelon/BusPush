@@ -6,7 +6,8 @@
     "pages/mine/mine",
     "pages/code/code",
     "pages/notice/notice",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/question/question"
   ],
   "tabBar": {
     "selectedColor": "#1989fa",

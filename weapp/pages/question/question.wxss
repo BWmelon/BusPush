@@ -1,0 +1,20 @@
+/* pages/question/question.wxss */
+.question {
+  overflow: auto;
+  padding: 24rpx;
+}
+
+.question-item-q {
+  color: #666;
+  font-size: 32rpx;
+}
+
+.question-item-a {
+  color: #999;
+  margin-top: 12rpx;
+  line-height: 48rpx;
+}
+
+.question-item:nth-child(n+2) {
+  margin-top: 36rpx;
+}

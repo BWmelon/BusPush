@@ -27,7 +27,11 @@ Page({
           label: '问题反馈/功能建议',
           page: 'feedback',
           icon: 'icon-fankui'
-      }]
+        }, {
+          label: '常见问题',
+          page: 'question',
+          icon: 'icon-changjianwentixiangguanwenti'
+        }]
     },
     
     /**

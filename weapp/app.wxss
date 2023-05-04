@@ -1,14 +1,8 @@
-view,
-text {
-    margin: 0;
-    padding: 0;
-}
-
 @font-face {
   font-family: "iconfont"; /* Project id 3607550 */
-  src: url('//at.alicdn.com/t/c/font_3607550_fhmbeq8bqjr.woff2?t=1664344871667') format('woff2'),
-       url('//at.alicdn.com/t/c/font_3607550_fhmbeq8bqjr.woff?t=1664344871667') format('woff'),
-       url('//at.alicdn.com/t/c/font_3607550_fhmbeq8bqjr.ttf?t=1664344871667') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_3607550_fmdliibrppe.woff2?t=1683167799677') format('woff2'),
+       url('//at.alicdn.com/t/c/font_3607550_fmdliibrppe.woff?t=1683167799677') format('woff'),
+       url('//at.alicdn.com/t/c/font_3607550_fmdliibrppe.ttf?t=1683167799677') format('truetype');
 }
 
 .iconfont {
@@ -17,6 +11,10 @@ text {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-changjianwentixiangguanwenti:before {
+  content: "\e689";
 }
 
 .icon-fankui:before {
