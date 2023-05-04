@@ -53,7 +53,7 @@ export default {
      */
     handleChangeWarn(e) {
         this.warn = e.checked
-        getStorage.then(storage => {
+        getStorage().then(storage => {
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
             setting.warn = e.checked
