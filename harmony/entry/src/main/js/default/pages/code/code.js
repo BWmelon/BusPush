@@ -2,14 +2,19 @@ import router from '@system.router';
 import prompt from '@system.prompt';
 import http from '@ohos.net.http';
 import { getStorage } from '../../common/utils/tools'
+import featureAbility from '@ohos.ability.featureAbility';
 
 export default {
     data: {
         lineList: [],
         showLoading: false,
+        title: '',
         userInfo: {
             userCode: ''
         }
+    },
+    onShow() {
+        this.cancelBackgroundRunning()
     },
     onInit() {
         getStorage().then(storage => {
@@ -84,9 +89,9 @@ export default {
             title: '提示',
             message: '是否确认删除？',
             buttons: [{
-                    text: '取消',
-                    color: '#eee'
-                },
+                text: '取消',
+                color: '#eee'
+            },
                 {
                     text: '确认',
                     color: '#f00'
@@ -113,11 +118,11 @@ export default {
         // 填写http请求的url地址，可以带参数也可以不带参数。URL地址需要开发者自定义。GET请求的参数可以在extraData中指定
         httpRequest.request(
             `https://buspushapi.bwmelon.com/watch/getUserInfo?userCode=${this.userInfo.userCode}`, {
-                // 开发者根据自身业务需要添加header字段
-                header: {
-                    "Content-Type": "application/json"
-                },
-            }
+            // 开发者根据自身业务需要添加header字段
+            header: {
+                "Content-Type": "application/json"
+            },
+        }
         ).then(res => {
             this.showLoading = false
             if (res.responseCode == 200) {
@@ -151,12 +156,65 @@ export default {
      * @param id 查询id
      */
     openRealtime(id) {
-        router.push({
-            uri: 'pages/realtime/realtime',
-            params: {
-                id
+        this.locationPermissionCheck().then(() => {
+            const ACTION_MESSAGE_CODE_START = 1001; // 后台定位运行开始
+            this.callJavaPA(ACTION_MESSAGE_CODE_START).then(result => {
+                if(result.code == 0) {
+                    router.push({
+                        uri: 'pages/realtime/realtime',
+                        params: {
+                            id
+                        }
+                    })
+                }
+            })
+
+        }).catch(() => {
+            this.startPermissionAbility(id)
+        })
+    },
+    /**
+     * 取消后台运行
+     */
+    cancelBackgroundRunning() {
+        const ACTION_MESSAGE_CODE_STOP = 1002; // 后台定位结束
+        this.callJavaPA(ACTION_MESSAGE_CODE_STOP).then(result => {
+            if(result.code == 0) {
+                prompt.showToast({ message: '已停止' })
             }
         })
+    },
+    /**
+     * 打开授权ability页面
+     * @param id 查询id
+     */
+    async startPermissionAbility(id) {
+        // https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-apis-distributed-start-0000001050024935
+        let target = {
+            bundleName: "com.bwmelon.buspush",
+            abilityName: "com.bwmelon.buspush.PageAbilityPermission",
+            data: {}
+        };
+
+        // let result = await FeatureAbility.startAbility(target);
+        let result = await FeatureAbility.startAbilityForResult(target);
+        if (result.code == 0) {
+            let params = JSON.parse(JSON.parse(result.data).parameters.result)
+            if(params.resultValue == 0) {
+                // 已授权，继续打开
+                this.openRealtime(id)
+            } else if(params.resultValue == 1) {
+                // 已拒绝
+                prompt.showToast({ message: '已禁止，无法查询实时公交' })
+            } else if(params.resultValue == 2) {
+                // 无法弹窗
+                prompt.showToast({ message: '请在设置-应用中打开腕上公交位置信息权限' })
+            }
+            this.title = JSON.stringify(params)
+        } else {
+            console.log('cannot start browsing service, reason: ' + result.data);
+            prompt.showToast({ message: '申请授权失败，请联系管理员' })
+        }
     },
     /**
      * 打开页面
@@ -167,4 +225,49 @@ export default {
             uri: `pages/${name}/${name}`
         })
     },
+    /**
+     * 验证定位权限是否已被授权
+     */
+    locationPermissionCheck() {
+        const ACTION_MESSAGE_CODE_CHECK_LOCATION_PERMISSION = 1000 // 验证是否已授权
+        return new Promise((resolve, reject) => {
+             this.callJavaPA(ACTION_MESSAGE_CODE_CHECK_LOCATION_PERMISSION).then(result => {
+                this.title = JSON.stringify(result)
+                if(result.resultValue) {
+                    resolve()
+                } else {
+                    reject()
+                }
+            }).catch(() => {
+                 reject()
+            })
+        })
+    },
+    callJavaPA(messageCode) {
+        // https://developer.harmonyos.com/cn/docs/documentation/doc-references/js-apis-fa-calls-pa-overview-0000000000617989
+        return new Promise(async (resolve, reject) => {
+            const ABILITY_TYPE_EXTERNAL = 0;
+            const ACTION_SYNC = 0;
+            var action = {};
+            action.bundleName = 'com.bwmelon.buspush';
+            action.abilityName = 'com.bwmelon.buspush.ServiceAbility';
+            action.messageCode = messageCode;
+            action.data = {};
+            action.abilityType = ABILITY_TYPE_EXTERNAL;
+            action.syncOption = ACTION_SYNC;
+
+            var result = await FeatureAbility.callAbility(action);
+                    this.title = result
+            result = JSON.parse(result);
+            if(result.code === 0) {
+                // 调用成功
+                resolve(result)
+            } else {
+                prompt.showToast({ message: '查询权限失败，请联系管理员' })
+                // 调用失败
+                reject()
+            }
+        })
+
+    }
 }

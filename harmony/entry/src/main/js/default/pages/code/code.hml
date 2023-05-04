@@ -31,6 +31,11 @@
 <!--                </div>-->
             </div>
         </list-item>
+<!--        <list-item style="font-size: 12px;">-->
+<!--            <text>-->
+<!--                <span>{{ title }}</span>-->
+<!--            </text>-->
+<!--        </list-item>-->
         <list-item class="container-buttons" clickeffect="false">
             <button if="{{ userInfo.userCode == '' }}" class="container-buttons-item add" type="circle" icon="/common/images/user.png" @click="openPage('generate')"></button>
             <button if="{{ userInfo.userCode != '' }}" class="container-buttons-item add" type="circle" icon="/common/images/refresh.png" @click="refreshLineList"></button>

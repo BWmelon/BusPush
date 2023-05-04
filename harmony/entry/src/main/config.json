@@ -62,6 +62,27 @@
         "label": "$string:entry_MainAbility",
         "type": "page",
         "launchType": "standard"
+      },
+      {
+        "name": "com.bwmelon.buspush.ServiceAbility",
+        "description": "$string:serviceability_description",
+        "type": "service",
+        "visible": true,
+        "backgroundModes": [
+          "dataTransfer",
+          "location"
+        ],
+        "icon": "$media:icon"
+      },
+      {
+        "name": "com.bwmelon.buspush.PageAbilityPermission",
+        "description": "$string:pageabilitypermission_description",
+        "icon": "$media:icon",
+        "label": "$string:entry_PageAbilityPermission",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "visible": true,
+        "type": "page"
       }
     ],
     "distro": {
@@ -98,6 +119,30 @@
       },
       {
         "name": "ohos.permission.VIBRATE"
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:permreason_location",
+        "usedScene": {
+          "ability": [
+            "com.bwmelon.buspush.MainAbility",
+            "com.bwmelon.buspush.ServiceAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+        "reason": "$string:permreason_location_bg",
+        "usedScene": {
+          "ability": [
+            "com.bwmelon.buspush.ServiceAbility"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
       }
     ]
   }

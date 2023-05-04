@@ -5,9 +5,9 @@ ohos {
     signingConfigs {
         debug {
             storeFile file('C:\\Users\\bwmelon\\.ohos\\config\\auto_debug_harmony_com.bwmelon.buspush_10086000025759169.p12')
-            storePassword '0000001B6B6BA2DC90A7738859F6FAF9A058A8BE066E083E44D2988E0D2B9655722009401461965CFA5DC9'
+            storePassword '0000001B1582B3194150982D81DCB2244469B8DF1383BE90724DF30BD6EE05573E9F80BD242B20D467DFCA'
             keyAlias = 'debugKey'
-            keyPassword '0000001BF5A720D37FD7168C65B9B5562FCC099D306F113AFDFF45479558A0BEDF65CC3CC1C0299DBD839A'
+            keyPassword '0000001BECC2D2372615B77A221DDF9F141CE93C4093C8ABA8988BCFADB7DA418ABA20523434F858177EF5'
             signAlg = 'SHA256withECDSA'
             profile file('C:\\Users\\bwmelon\\.ohos\\config\\auto_debug_harmony_com.bwmelon.buspush_10086000025759169.p7b')
             certpath file('C:\\Users\\bwmelon\\.ohos\\config\\auto_debug_harmony_com.bwmelon.buspush_10086000025759169.cer')

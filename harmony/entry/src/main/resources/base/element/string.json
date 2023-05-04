@@ -7,6 +7,30 @@
     {
       "name": "mainability_description",
       "value": "腕上公交"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "permreason_location",
+      "value": "用于保持后台查询实时公交"
+    },
+    {
+      "name": "permreason_location_bg",
+      "value": "用于保持后台查询实时公交"
+    },
+    {
+      "name": "pageabilitypermission_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "pageabilitypermission_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_PageAbilityPermission",
+      "value": "entry_PageAbilityPermission"
     }
   ]
 }

@@ -10,6 +10,16 @@ apply plugin: 'com.huawei.ohos.app'
 //For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
 ohos {
     signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\bwmelon\\.ohos\\config\\auto_debug_harmony_com.bwmelon.buspush_10086000025759169.p12')
+            storePassword '0000001B1E04364222DA5475B416189D1F3DDF66485AFAE79CA0E737EC45573C6791E40BE2E3398B4F1F41'
+            keyAlias = 'debugKey'
+            keyPassword '0000001B42971EBEC5283819420F60547EC04E88E7F71246483EA7E714740CA63343F956F4AABDE2D5C1EE'
+            signAlg = 'SHA256withECDSA'
+            profile file('C:\\Users\\bwmelon\\.ohos\\config\\auto_debug_harmony_com.bwmelon.buspush_10086000025759169.p7b')
+            certpath file('C:\\Users\\bwmelon\\.ohos\\config\\auto_debug_harmony_com.bwmelon.buspush_10086000025759169.cer')
+        }
+
 //        release {
 //            storeFile file('D:\\key\\buspush_release.p12')
 //            storePassword '0000001EF0FD3C476A1FE501DD34E00462B5F9FD9D8FC66508CC1A6787A2231049B933BC6520777F0CBB299449AA'
