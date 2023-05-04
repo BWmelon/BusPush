@@ -180,7 +180,7 @@ export default {
         const ACTION_MESSAGE_CODE_STOP = 1002; // 后台定位结束
         this.callJavaPA(ACTION_MESSAGE_CODE_STOP).then(result => {
             if(result.code == 0) {
-                prompt.showToast({ message: '已停止' })
+                // prompt.showToast({ message: '已停止' })
             }
         })
     },
