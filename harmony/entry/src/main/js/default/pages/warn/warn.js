@@ -3,6 +3,7 @@ import { getStorage } from '../../common/utils/tools'
 export default {
     data: {
         warn: false,
+        accurateVibration: false,
         warnTime: '3',
         range: [],
         selectedIndex: 0, // 索引
@@ -16,6 +17,7 @@ export default {
             this.warn = setting.warn
             this.warnTime = setting.warnTime
             this.selectedIndex = this.range.findIndex(e => e === this.warnTime)
+            this.accurateVibration = setting.accurateVibration
         }).catch((err) => {
             console.log(err)
             prompt.showToast({message: '配置读取失败，请联系管理员'})
@@ -57,6 +59,23 @@ export default {
             let setting = storage.getSync('setting', '')
             setting = JSON.parse(setting)
             setting.warn = e.checked
+            storage.putSync('setting', JSON.stringify(setting))
+            storage.flushSync()
+        }).catch((err) => {
+            console.log(err)
+            prompt.showToast({message: '保存失败，请联系管理员'})
+        })
+    },
+    /**
+     * 切换精确震动
+     * @param e
+     */
+    handleChangeAccurateVibration(e) {
+        this.warn = e.checked
+        getStorage().then(storage => {
+            let setting = storage.getSync('setting', '')
+            setting = JSON.parse(setting)
+            setting.accurateVibration = e.checked
             storage.putSync('setting', JSON.stringify(setting))
             storage.flushSync()
         }).catch((err) => {

@@ -16,6 +16,7 @@ const getStorage = () => {
                     refreshTime: 30,
                     warn: false,
                     warnTime: '3',
+                    accurateVibration: false, // 精确震动
                     readPrivacy: false,
                     userInfo: {
                         userCode: ''

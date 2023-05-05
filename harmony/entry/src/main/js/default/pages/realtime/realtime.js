@@ -15,6 +15,7 @@ export default {
         countdown: 30,
         warn: false,
         warnTime: '3',
+        accurateVibration: false,
         running: null,
         showLoading: false,
         buses: [], // 所有当前未到站车辆
@@ -29,6 +30,7 @@ export default {
             this.countdownOrigin = setting.refreshTime
             this.warn = setting.warn
             this.warnTime = setting.warnTime
+            this.accurateVibration = setting.accurateVibration
 
             this.getRealtime(true)
             this.running = setInterval(() => {
@@ -90,18 +92,7 @@ export default {
                         if (time <= Number(this.warnTime)) {
                             // 在提前时间范围内，提醒
                             firstBus.class = 'buses-item-warn'
-                            vibrator.vibrate({
-                                mode: 'long',
-                                success: function() {
-                                    console.log('vibrate is successful');
-                                },
-                                fail: function(data, code) {
-                                    console.log("vibrate is failed, data: " + data + ", code: " + code);
-                                },
-                                complete: function() {
-                                    console.log('vibrate is completed');
-                                }
-                            });
+                            this.handleVibrate(time)
                         }
                     }
 
@@ -141,6 +132,54 @@ export default {
                 })
             }, 2000)
             this.countdown = this.countdownOrigin
+        })
+    },
+    /**
+     * 处理震动
+     * @param time 剩余到站时间
+     */
+    async handleVibrate(time) {
+        // 即将到站，长震动5次
+        if(time === 0) {
+            for (let i = 0; i < 5; i++) {
+                await this.vibrate('long')
+            }
+            return
+        }
+        if(this.accurateVibration) {
+            let longTime = Math.floor(time / 5)
+            let shortTime = time % 5
+            for (let i = 0; i < longTime; i++) {
+                await this.vibrate('long')
+            }
+            for (let i = 0; i < shortTime; i++) {
+                await this.vibrate('short')
+            }
+        } else {
+            this.vibrate('long')
+        }
+    },
+    /**
+     * 震动
+     * @param mode 模式 long short
+     */
+    vibrate(mode) {
+        return new Promise(resolve => {
+            vibrator.vibrate({
+                mode,
+                success: () => {
+                    console.log('vibrate is successful');
+                },
+                fail: (data, code) => {
+                    console.log("vibrate is failed, data: " + data + ", code: " + code);
+                },
+                complete: () => {
+                    console.log('vibrate is completed');
+                    setTimeout(() => {
+                        resolve()
+                    }, mode === 'long' ? 1200 : 300)
+                }
+            });
         })
     },
     /**
