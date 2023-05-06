@@ -25,10 +25,6 @@ public class ServiceAbility extends Ability {
     private static final HiLogLabel LABEL = new HiLogLabel(HiLog.LOG_APP, 0, "MY_TAG");
 
     private MyRemote remote = new MyRemote();
-    RequestParam requestParam = new RequestParam(RequestParam.PRIORITY_ACCURACY, 0, 0);
-
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 999;
 
     String resultMsg = "resultMsg";
     Boolean resultValue = false;
@@ -82,19 +78,21 @@ public class ServiceAbility extends Ability {
             super("MyService_MyRemote");
         }
 
-        Locator locator = new Locator(ServiceAbility.this);
 
         public  class MyLocatorCallback implements LocatorCallback {
             public void onLocationReport(Location location) {
                 resultMsg = "onLocationReport";
+                HiLog.info(LABEL, "onLocationReport");
             }
 
             public void onStatusChanged(int type) {
                 resultMsg = "onStatusChanged";
+                HiLog.info(LABEL, "onLocationReport");
             }
 
             public void onErrorReport(int type) {
                 resultMsg = "onErrorReport";
+                HiLog.info(LABEL, "onErrorReport");
             }
         }
 
@@ -112,12 +110,17 @@ public class ServiceAbility extends Ability {
 
             switch (code) {
                 case CHECK: {
-                    if (verifySelfPermission("ohos.permission.LOCATION") != IBundleManager.PERMISSION_GRANTED) {
+                    if (verifySelfPermission("ohos.permission.LOCATION") == IBundleManager.PERMISSION_GRANTED) {
+                        if (verifySelfPermission("ohos.permission.LOCATION_IN_BACKGROUND") == IBundleManager.PERMISSION_GRANTED) {
+                            resultValue = true;
+                            resultMsg = "位置信息已授权";
+                        } else {
+                            resultValue = false;
+                            resultMsg = "位置信息已授权，后台位置信息未授权";
+                        }
+                    } else {
                         resultValue = false;
                         resultMsg = "位置信息未授权";
-                    } else  {
-                        resultValue = true;
-                        resultMsg = "位置信息已授权";
                     }
                     // 返回结果当前仅支持String，对于复杂结构可以序列化为ZSON字符串上报
                     Map<String, Object> result = new HashMap<String, Object>();
@@ -128,13 +131,15 @@ public class ServiceAbility extends Ability {
                     break;
                 }
                 case START: {
-                    locator.startLocating(requestParam, locatorCallback);
-
-//                    content.setTitle("提示").setText("后台运行中");
-//                    request.setContent(notificationContent);
+                    Locator locator = new Locator(ServiceAbility.this);
+                    RequestParam requestParam = new RequestParam(RequestParam.PRIORITY_ACCURACY, 0, 0);
+                    NotificationRequest.NotificationContent notificationContent= new NotificationRequest.NotificationContent(content);
+                    content.setTitle("提示").setText("后台运行中");
+                    request.setContent(notificationContent);
 
                     // 绑定通知，1005为创建通知时传入的notificationId
                     keepBackgroundRunning(1005, request);
+                    locator.startLocating(requestParam, locatorCallback);
                     resultMsg = "开始定位";
                     resultValue = true;
 
@@ -149,6 +154,8 @@ public class ServiceAbility extends Ability {
                     break;
                 }
                 case STOP: {
+                    // 有问题，无法结束定位，暂时使用cancelBackgroundRunning让定位无法后台运行
+                    Locator locator = new Locator(ServiceAbility.this);
                     locator.stopLocating(locatorCallback);
                     cancelBackgroundRunning();
                     resultMsg = "结束定位";

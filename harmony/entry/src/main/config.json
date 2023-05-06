@@ -69,7 +69,6 @@
         "type": "service",
         "visible": true,
         "backgroundModes": [
-          "dataTransfer",
           "location"
         ],
         "icon": "$media:icon"
@@ -122,11 +121,12 @@
       },
       {
         "name": "ohos.permission.LOCATION",
-        "reason": "$string:permreason_location",
+        "reason": "$string:permreason_location_bg",
         "usedScene": {
           "ability": [
             "com.bwmelon.buspush.MainAbility",
-            "com.bwmelon.buspush.ServiceAbility"
+            "com.bwmelon.buspush.ServiceAbility",
+            "com.bwmelon.buspush.PageAbilityPermission"
           ],
           "when": "always"
         }
@@ -136,7 +136,9 @@
         "reason": "$string:permreason_location_bg",
         "usedScene": {
           "ability": [
-            "com.bwmelon.buspush.ServiceAbility"
+            "com.bwmelon.buspush.MainAbility",
+            "com.bwmelon.buspush.ServiceAbility",
+            "com.bwmelon.buspush.PageAbilityPermission"
           ],
           "when": "always"
         }

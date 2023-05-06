@@ -205,7 +205,7 @@ export default {
                 this.openRealtime(id)
             } else if(params.resultValue == 1) {
                 // 已拒绝
-                prompt.showToast({ message: '已禁止，无法查询实时公交' })
+                prompt.showToast({ message: '无法查询实时公交，请选择始终允许' })
             } else if(params.resultValue == 2) {
                 // 无法弹窗
                 prompt.showToast({ message: '请在设置-应用中打开腕上公交位置信息权限' })

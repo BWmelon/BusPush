@@ -22,10 +22,10 @@ public class PageAbilityPermission extends Ability {
 
 
 
-        if (canRequestPermission(SystemPermission.LOCATION)) {
+        if (canRequestPermission(SystemPermission.LOCATION_IN_BACKGROUND)) {
             // 可以发起申请授权弹窗
             requestPermissionsFromUser(
-                    new String[] { "ohos.permission.LOCATION" } , MY_PERMISSIONS_REQUEST_LOCATION);
+                    new String[] { "ohos.permission.LOCATION_IN_BACKGROUND", "ohos.permission.LOCATION" } , MY_PERMISSIONS_REQUEST_LOCATION);
         } else {
             // 结束该Ability并返回结果
             Map<String, Object> result = new HashMap<String, Object>();
