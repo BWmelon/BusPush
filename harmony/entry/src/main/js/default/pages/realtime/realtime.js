@@ -100,29 +100,40 @@ export default {
 
                     this.getStations()
                 } else if (result.errCode == 1) {
-                    prompt.showToast({ message: result.errMsg })
+                    if(first) {
+                        prompt.showToast({ message: result.errMsg })
+                        setTimeout(() => {
+                            router.back({
+                                uri: 'pages/code/code'
+                            })
+                        }, 2000)
+                    } else {
+                        this.getRealtime()
+                    }
+                } else {
+                    if(first) {
+                        prompt.showToast({ message: '系统出错，请联系管理员' })
+                        setTimeout(() => {
+                            router.back({
+                                uri: 'pages/code/code'
+                            })
+                        }, 2000)
+                    } else {
+                        this.getRealtime()
+                    }
+                }
+            } else {
+                if(first) {
+                    prompt.showToast({ message: '网络连接失败，请联系管理员' })
                     setTimeout(() => {
                         router.back({
                             uri: 'pages/code/code'
                         })
                     }, 2000)
                 } else {
-                    prompt.showToast({ message: '系统出错，请联系管理员' })
-                    setTimeout(() => {
-                        router.back({
-                            uri: 'pages/code/code'
-                        })
-                    }, 2000)
+                    this.getRealtime()
                 }
-            } else {
-                prompt.showToast({ message: '网络连接失败，请联系管理员' })
-                setTimeout(() => {
-                    router.back({
-                        uri: 'pages/code/code'
-                    })
-                }, 2000)
             }
-            this.countdown = this.countdownOrigin
         }).catch(err => {
             this.showLoading = false
             prompt.showToast({ message: '网络连接失败，请联系管理员' })
@@ -131,7 +142,6 @@ export default {
                     uri: 'pages/code/code'
                 })
             }, 2000)
-            this.countdown = this.countdownOrigin
         })
     },
     /**
