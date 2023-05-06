@@ -60,6 +60,8 @@
       </view>
       <i class="item-attention iconfont icon-zhuyi" bindtap="showTip"></i>
     </view>
+    <!-- 提示 -->
+    <view class="add-info-tip">请注意，首次在智能手表中查询实时公交信息时，请将位置权限授权为"始终允许"，"仅使用期间允许"或"禁止"无法查询实时公交信息。</view>
     <!-- 确认 -->
     <view
       class="add-info-confirm"

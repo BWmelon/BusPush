@@ -50,6 +50,13 @@
                 margin-top: 30rpx;
             }
         }
+        &-tip {
+            margin-top: 48rpx;
+            color: #999;
+            border-left: 8rpx solid #999;
+            padding: 12rpx 0 12rpx 24rpx;
+            line-height: 48rpx;
+        }
         &-confirm {
             width: 120rpx;
             height: 120rpx;
@@ -58,7 +65,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 200rpx auto 0;
+            margin: 160rpx auto 0;
             .confirm-icon {
                 font-size: 40rpx;
                 color: #fff;

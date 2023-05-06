@@ -1,6 +1,6 @@
 <view class="question">
     <view class="question-item" wx:for="{{ list }}" wx:key="index">
-        <view class="question-item-q">问：{{ item.q }}</view>
-        <view class="question-item-a">答：{{ item.a }}</view>
+        <view class="question-item-q"  style="{{ 'color:' + (item.important ? '#dc3023' : '') }}">问：{{ item.q }}</view>
+        <view class="question-item-a"  style="{{ 'color:' + (item.important ? '#dc3023' : '') }}">答：{{ item.a }}</view>
     </view>
 </view>
