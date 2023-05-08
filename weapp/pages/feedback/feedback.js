@@ -11,6 +11,7 @@
 // pages/feedback/feedback.js
 import { feedbackCollection } from '../../utils/db'
 import { formatTime } from '../../utils/util'
+import dingdingRobot from '../../utils/dingdingRobot'
 Page({
 
     /**
@@ -91,6 +92,7 @@ Page({
                             icon: 'none'
                         })
                     })
+                    dingdingRobot(this.data.content)
                 }
             },
             fail: () => {},
